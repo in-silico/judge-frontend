@@ -10,6 +10,7 @@ My Name <email@example.co>
 Collaborators List
 ==================
 
+<<<<<<< HEAD
 
 Alejandro E. Rendon <alejorendon@utp.edu.co>
 Carolina Jiménez Gómez <krito_j_g@utp.edu.co>
@@ -24,3 +25,8 @@ Leiver  <leiverandres@utp.edu.co>
 Manuel Pineda <manuel.felipe.pineda@gmail.com>
 Sebastian Duque Restrepo <sebas.duque@utp.edu.co>
 Yefri <yefri.gaitan97@gmail.com>
+=======
+Alejandro E. Rendon	<alejorendon@utp.edu.co>
+Sebastian Duque Restrepo <sebas.duque@utp.edu.co>
+Leiver  <leiverandres@utp.edu.co>
+>>>>>>> 3bf92fa5fa2ed1f81661b573a38c48fbc4e45bfc
