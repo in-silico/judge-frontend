@@ -1,0 +1,20 @@
+# folders
+node_modules
+
+# Pre compile code
+
+# Config files, passwords, etc.
+
+
+# logs
+
+*.log
+*.png
+*.osm
+*.dump
+*.err
+*.log
+*.pid
+
+# Auto generated files
+public/bundle.js
