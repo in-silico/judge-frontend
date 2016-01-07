@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build-js": "browserify -t [ babelify --presets [ react ] ] browser/main.js -o public/bundle.js",
+    "build-js": "browserify -t [ babelify --presets [ react ] ] browser/main.js -o public/js/bundle.js",
     "start": "npm run build-js && node ./bin/www"
   },
   "dependencies": {
