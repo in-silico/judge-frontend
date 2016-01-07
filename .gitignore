@@ -17,4 +17,4 @@ node_modules
 *.pid
 
 # Auto generated files
-public/bundle.js
+public/js/bundle.js
