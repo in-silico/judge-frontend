@@ -6,4 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <h1>Hello, world!</h1>,
     document.getElementById('example')
   );
+
+  ReactDOM.render(<p> One more test </p>, document.getElementById('test'));
 });
