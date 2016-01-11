@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "build-js": "browserify -t [ babelify --presets [ react ] ] browser/main.js -o public/js/bundle.js",
-    "start": "npm run build-js && node ./bin/www"
+    "watch-js": "watchify -t [ babelify --presets [ react ] ] browser/main.js -o public/js/bundle.js -dv",
+    "start": "npm run build-js && node ./bin/www",
+    "start-dev": "export NODE_ENV=development && npm run watch-js & node ./bin/www"
   },
   "dependencies": {
     "babel-preset-react": "^6.3.13",
@@ -18,6 +20,7 @@
     "morgan": "~1.6.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "watchify": "^3.7.0"
   }
 }
