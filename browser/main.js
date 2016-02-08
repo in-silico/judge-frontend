@@ -1,11 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var ContestForm = require('./components/contest_form.js');
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
-    <h1>Hello, world!</h1>,
+    <ContestForm url='http://127.0.0.1:8080/contests' />,
     document.getElementById('example')
   );
-
-  ReactDOM.render(<p> One more test </p>, document.getElementById('test'));
 });
