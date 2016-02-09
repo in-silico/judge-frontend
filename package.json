@@ -20,6 +20,7 @@
     "morgan": "~1.6.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-router": "^1.0.3",
     "serve-favicon": "~2.3.0",
     "watchify": "^3.7.0"
   }

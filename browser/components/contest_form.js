@@ -1,11 +1,48 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-module.exports = React.createClass({
-  //Handlers and initial state
-  getInitialState: function () {
-    return {title: '', description: ''}
+var Problem = React.createClass({
+  handleCheck: function (e) {
+    this.props.checkProblem(this.props.id);
   },
+  render: function () {
+    return(
+      <div className='problem'>
+        <ul>
+          <li>{this.props.title}</li>
+          <li>{this.props.author}</li>
+          <li>Add<input type="checkbox"
+            onChange={this.handleCheck}></input></li>
+        </ul>
+      </div>
+    );
+  }
+});
+
+module.exports = React.createClass({
+  //Initial State, Component mounting
+  getInitialState: function () {
+    return {title: '', description: '', problems: [], selProblems: []}
+  },
+  getProblemsFromServer: function () {
+    $.ajax({
+      url: this.props.url + 'problems',
+      contentType: "application/json",
+      dataType: 'json',
+      crossDomain: true,
+      success: function (res) {
+        this.setState({problems: res});
+        console.log(JSON.stringify(res));
+      }.bind(this),
+      error: function (xhr, status) {
+        console.log('error');
+      }
+    });
+  },
+  componentDidMount: function () {
+    this.getProblemsFromServer();
+  },
+  //Handlers
   handleTitleChange: function (e) {
     this.setState({title: e.target.value});
   },
@@ -16,14 +53,21 @@ module.exports = React.createClass({
     e.preventDefault();
     var title = this.state.title.trim();
     var description = this.state.description.trim();
+    var problemArray = this.state.selProblems;
     if (!title || !description)
       return;
-    this.onContestSubmit({title: title, description: description});
-    this.setState({title: '', description: ''});
+    this.onContestSubmit({
+      title: title,
+      description: description,
+      problems: problemArray});
+
+    this.setState({title: '', description: '', selProblems: []});
   },
+  //Submission
   onContestSubmit: function (contest) {
+    console.log(JSON.stringify(contest));
     $.ajax({
-      url: this.props.url,
+      url: this.props.url + 'contests',
       type: "POST",
       crossDomain: true,
       data: JSON.stringify(contest),
@@ -37,8 +81,38 @@ module.exports = React.createClass({
       }
     });
   },
+  //additional
+  checkProblem: function (id) {
+    var problemArray = this.state.selProblems;
+    var pr_index;
+    var problem = problemArray.find(function (item, index) {
+      if(item.problem_id == id){
+        pr_index = index;
+        return item;
+      }
+    });
+    if (problem){
+      problemArray.splice(pr_index, 1);
+      console.log(JSON.stringify(this.state.selProblems));
+    } else{
+      problemArray.push({problem_id: id});
+      this.setState({selProblems: problemArray});
+      console.log(JSON.stringify(this.state.selProblems));
+    }
+  },
   //The render
   render: function () {
+    var addProblem = this.checkProblem;
+    var allProblems = this.state.problems.map(function (item) {
+      return(
+        <Problem title={item.title}
+          author={item.author}
+          key={item._id}
+          id={item._id}
+          checkProblem={addProblem}>
+        </Problem>
+      );
+    });
     return (
       <div className='contestForm' onSubmit={this.handleSubmit}>
         <form>
@@ -54,6 +128,7 @@ module.exports = React.createClass({
             value={this.state.description}
             onChange={this.handleDescriptionChange}>
           </textarea><br />
+          {allProblems}<br />
           <input type='submit' value = 'Add contest'/>
         </form>
       </div>

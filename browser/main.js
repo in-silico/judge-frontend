@@ -4,7 +4,7 @@ var ContestForm = require('./components/contest_form.js');
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
-    <ContestForm url='http://127.0.0.1:8080/contests' />,
+    <ContestForm url='http://127.0.0.1:8080/' />,
     document.getElementById('example')
   );
 });
