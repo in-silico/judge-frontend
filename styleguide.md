@@ -1,20 +1,19 @@
 # HTML
 
-* Cerrar tags apropiadamente, excepto cosas como
-
+* Close tags properly, except this ones
 ```html
 <br/>
 ```
 
-* propiedades HTML sin espacios, propiedades entre comillas
+* HTML properties without space, values between quotes
 
 ```html
-<tag propiedad="valor">texto</tag>
+<tag property="value">text</tag>
 ```
 
-* Identar con 2 espacios
+* Indent with 2 spaces
 
-* Palabras separadas por guion en el nombre de las clases
+* Words separated by a dash '-' in the name of the class
 
 ```html
 <tag class="bad_class_name">texto</tag>
@@ -26,11 +25,11 @@
 
 # Javascript
 
-* Intentar no tener más de 80 caracteres por linea
+* Try to spend less than 80 character by line
 
-* Usar ';' para al final de las sentencias
+* Use semicolon ';' for sentences ending
 
-* Estilo para funciones
+* Style for function
 
 ```javascript
 function funcName(arg1,...) {
@@ -38,7 +37,7 @@ function funcName(arg1,...) {
 };
 ```
 
-* Para lista de funciones en react js
+* For function list on React js
 
 ```javascript
 class NameClass extends react.Component {
@@ -52,7 +51,7 @@ class NameClass extends react.Component {
 }
 ```
 
-* Usar el require tradicional
+* Using traditional require
 
 ```javascript
 var express = require("express");
