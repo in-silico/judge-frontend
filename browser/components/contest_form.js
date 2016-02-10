@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var fetch = require('node-fetch');
 
 var Problem = React.createClass({
   handleCheck: function (e) {
