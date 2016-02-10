@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build-js": "browserify -t [ babelify --presets [ react ] ] browser/main.js -o public/js/bundle.js",
-    "watch-js": "watchify -t [ babelify --presets [ react ] ] browser/main.js -o public/js/bundle.js -dv",
+    "build-js": "browserify -t [ babelify --presets [ es2015 react ] ] browser/main.js -o public/js/bundle.js",
+    "watch-js": "watchify -t [ babelify --presets [ es2015 react ] ] browser/main.js -o public/js/bundle.js -dv",
     "start": "npm run build-js && node ./bin/www",
     "start-dev": "export NODE_ENV=development && npm run watch-js & node ./bin/www"
   },
   "dependencies": {
+    "babel-preset-es2015": "~6.3.13",
     "babel-preset-react": "~6.3.13",
     "babelify": "~7.2.0",
     "body-parser": "~1.13.2",
@@ -18,10 +19,10 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
-    "node-fetch": "~1.3.3",
     "react": "~0.14.3",
     "react-dom": "~0.14.3",
     "serve-favicon": "~2.3.0",
+    "superagent": "~1.7.2",
     "watchify": "~3.7.0"
   },
   "description": "Frontend Service for UTPJudge project, it aims to deliver a responsive user interface for programming contests, it will use the [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) provided by the [judge-backend](https://github.com/in-silico/judge-backend) to get the judging done.",

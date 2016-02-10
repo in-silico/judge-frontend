@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var fetch = require('node-fetch');
+var superagent = require('superagent');
 
 var Problem = React.createClass({
   handleCheck: function (e) {
@@ -26,19 +26,15 @@ module.exports = React.createClass({
     return {title: '', description: '', problems: [], selProblems: []}
   },
   getProblemsFromServer: function () {
-    $.ajax({
-      url: this.props.url + 'problems',
-      contentType: "application/json",
-      dataType: 'json',
-      crossDomain: true,
-      success: function (res) {
-        this.setState({problems: res});
-        console.log(JSON.stringify(res));
-      }.bind(this),
-      error: function (xhr, status) {
-        console.log('error');
-      }
-    });
+    superagent
+      .get(this.props.url + 'problems')
+      .set('Accept', 'application/json')
+      .end(function(err, res){
+        if(err)
+          console.log('Oh no! error');
+        else
+          this.setState({problems: JSON.parse(res.text)});
+      }.bind(this));
   },
   componentDidMount: function () {
     this.getProblemsFromServer();
@@ -67,20 +63,17 @@ module.exports = React.createClass({
   //Submission
   onContestSubmit: function (contest) {
     console.log(JSON.stringify(contest));
-    $.ajax({
-      url: this.props.url + 'contests',
-      type: "POST",
-      crossDomain: true,
-      data: JSON.stringify(contest),
-      contentType: "application/json",
-      dataType: "json",
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (xhr, status) {
-        console.log('error');
+    superagent
+    .post(this.props.url + 'contests')
+    .send(contest)
+    .set('Accept', 'application/json')
+    .end(function(err, res){
+      if (err || !res.ok) {
+        console.log('Oh no! error');
+      } else {
+        console.log('yay got ' + JSON.stringify(res.body));
       }
-    });
+  });
   },
   //additional
   checkProblem: function (id) {
@@ -103,17 +96,16 @@ module.exports = React.createClass({
   },
   //The render
   render: function () {
-    var addProblem = this.checkProblem;
     var allProblems = this.state.problems.map(function (item) {
       return(
         <Problem title={item.title}
           author={item.author}
           key={item._id}
           id={item._id}
-          checkProblem={addProblem}>
+          checkProblem={this.checkProblem}>
         </Problem>
       );
-    });
+    }.bind(this));
     return (
       <div className='contestForm' onSubmit={this.handleSubmit}>
         <form>
