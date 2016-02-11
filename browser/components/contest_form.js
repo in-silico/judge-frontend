@@ -70,7 +70,7 @@ module.exports = React.createClass({
       if (err || !res.ok) {
         console.log('Oh no! error');
       } else {
-        document.location.pathname='/contests';
+        window.location.pathname='/contests';
         console.log('yay got ' + JSON.stringify(res.body));
       }
   });
