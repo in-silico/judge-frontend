@@ -33,7 +33,12 @@ html {
     padding: 0;
 }
 
-.contestForm li {
+.contestFormProblems li {
+    display: inline;
+    padding: 14px 16px;
+}
+
+.contest li {
     display: inline;
     padding: 14px 16px;
 }

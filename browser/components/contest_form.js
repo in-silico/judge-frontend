@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var superagent = require('superagent');
 
 var Problem = React.createClass({
@@ -9,7 +8,7 @@ var Problem = React.createClass({
   render: function () {
     return(
       <div className='problem'>
-        <ul>
+        <ul className='contestFormProblems'>
           <li>{this.props.title}</li>
           <li>{this.props.author}</li>
           <li>Add<input type="checkbox"
@@ -71,6 +70,7 @@ module.exports = React.createClass({
       if (err || !res.ok) {
         console.log('Oh no! error');
       } else {
+        document.location.pathname='/contests';
         console.log('yay got ' + JSON.stringify(res.body));
       }
   });
