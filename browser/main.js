@@ -1,11 +1,25 @@
-var React = require('react');
 var ReactDOM = require('react-dom');
+var React = require('react');
+var page = require('page');
+var ContestForm = require('./components/contest_form.js');
+var ContestList = require('./components/contest_list.js');
+window.backendAddress = 'http://127.0.0.1:8080/'
 
-document.addEventListener('DOMContentLoaded', function() {
-  ReactDOM.render(
-    <h1>Hello, world!</h1>,
-    document.getElementById('example')
-  );
-
-  ReactDOM.render(<p> One more test </p>, document.getElementById('test'));
+page('/contests/new', function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    ReactDOM.render(
+      <ContestForm url={window.backendAddress} />,
+      document.getElementById('container')
+    );
+  });
 });
+
+page('/contests', function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    ReactDOM.render(
+      <ContestList url={window.backendAddress} />,
+      document.getElementById('container')
+    );
+  });
+});
+page({ dispatch: true});
