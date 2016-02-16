@@ -7,14 +7,12 @@ var Problem = React.createClass({
   },
   render: function () {
     return(
-      <div className='problem'>
-        <ul className='contestFormProblems'>
-          <li>{this.props.title}</li>
-          <li>{this.props.author}</li>
-          <li>Add<input type="checkbox"
-            onChange={this.handleCheck}></input></li>
-        </ul>
-      </div>
+      <tr className="contestFormProblem">
+        <td>{this.props.title}</td>
+        <td>{this.props.author}</td>
+        <td>Add<input type="checkbox"
+          onChange={this.handleCheck}></input></td>
+      </tr>
     );
   }
 });
@@ -55,7 +53,8 @@ module.exports = React.createClass({
     this.onContestSubmit({
       title: title,
       description: description,
-      problems: problemArray});
+      problems: problemArray
+    });
 
     this.setState({title: '', description: '', selProblems: []});
   },
@@ -121,7 +120,10 @@ module.exports = React.createClass({
             value={this.state.description}
             onChange={this.handleDescriptionChange}>
           </textarea><br />
-          {allProblems}<br />
+          <table>
+            {allProblems}
+          </table>
+          <br />
           <input type='submit' value = 'Add contest'/>
         </form>
       </div>
