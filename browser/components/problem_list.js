@@ -18,6 +18,47 @@ var Problem = React.createClass({
   }
 });
 
+var Dropdown = React.createClass({
+  handleChange: function (e) {
+    var val = e.target.value;
+    this.props.dropdownChange(val);
+  },
+  render: function () {
+    var options = this.props.list.map(function (item) {
+      return (
+        <option value={item.value}>{item.text}</option>
+      );
+    });
+    return(
+      <div className="dropdown">
+        <select onChange={this.handleChange}>
+          {options}
+        </select>
+      </div>
+    );
+  }
+});
+
+var AddProblemsForm = React.createClass({
+  handleSubmit: function (e) {
+    e.preventDefault();
+    this.props.handleSubmit();
+  },
+  render: function () {
+    return (
+      <div className="addProblemsForm" onSubmit={this.handleSubmit}>
+        <form>
+          <Dropdown
+            list={this.props.list}
+            dropdownChange={this.props.dropdownChange}>
+          </Dropdown>
+          <input type="submit" value="Add Problems"></input>
+        </form>
+      </div>
+    );
+  }
+});
+
 module.exports = React.createClass({
   //Initial State and mounting
   getInitialState: function () {
@@ -41,13 +82,18 @@ module.exports = React.createClass({
       .end(function(err, res){
         if(err){
           console.log('Oh no! error');
-        } else{
+        } else {
           var parsedJSON = JSON.parse(res.text);
-          var contestTitles = [];
-          parsedJSON.forEach(function (item) {
-            contestTitles.push(item.title);
+          var contestList = [];
+          parsedJSON.forEach(function (item, index) {
+            contestList.push({value: item._id, text: item.title});
+            if (index == 0)
+              this.setState({selContest: item.title});
+          }.bind(this));
+          console.log(JSON.stringify(contestList));
+          this.setState({
+            contests: contestList
           });
-          this.setState({contests: contestTitles});
         }
       }.bind(this));
   },
@@ -55,13 +101,30 @@ module.exports = React.createClass({
     this.getProblemsFromServer();
     this.getContestsFromServer();
   },
-  handleSubmit: function (e) {
-    e.preventDefault();
+  addProblemsToContest: function (data) {
+    data.problems.forEach(function (item, index, array) {
+      superagent
+      .post(this.props.url + 'contests/add/' + data.contest)
+      .send(item)
+      .set('Accept', 'application/json')
+      .end(function(err, res){
+        if (err || !res.ok) {
+          console.log('Oh no! error');
+        } else {
+          console.log('yay got ' + JSON.stringify(res.body));
+          if (index >= array.length - 1)
+            window.location.pathname = '/contests'
+        }
+      });
+    }.bind(this));
+
+  },
+  handleSubmit: function () {
     var problemsToAdd = this.state.selProblems;
-    var contestToAddTo = this.selContest;
+    var contestToAddTo = this.state.selContest;
     if (!contestToAddTo || !problemsToAdd)
       return;
-    this.onProblemsAddSubmit({
+    this.addProblemsToContest({
       problems: problemsToAdd,
       contest: contestToAddTo
     });
@@ -85,6 +148,10 @@ module.exports = React.createClass({
       console.log(JSON.stringify(this.state.selProblems));
     }
   },
+  dropdownChange: function (contest) {
+    console.log(contest);
+    this.setState({selContest: contest});
+  },
   render: function () {
 
     var allProblems = this.state.problems.map(function (item) {
@@ -104,7 +171,12 @@ module.exports = React.createClass({
           <tbody>
             {allProblems}
           </tbody>
-        </table>        
+        </table>
+        <AddProblemsForm
+          list={this.state.contests}
+          dropdownChange={this.dropdownChange}
+          handleSubmit={this.handleSubmit}>
+        </AddProblemsForm>
       </div>
     );
   }
