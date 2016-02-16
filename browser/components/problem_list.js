@@ -2,11 +2,17 @@ var React = require('react');
 var superagent = require('superagent');
 
 var Problem = React.createClass({
+  handleCheck: function () {
+    this.props.problemCheck(this.props.id);
+  },
   render: function () {
     return (
       <tr className="problem">
         <td>{this.props.title}</td>
         <td>{this.props.description}</td>
+        <td>Add<input type="checkbox"
+          onChange={this.handleCheck}>
+        </input></td>
       </tr>
     );
   }
@@ -36,7 +42,7 @@ module.exports = React.createClass({
         if(err){
           console.log('Oh no! error');
         } else{
-          var parsedJSON = JSON.parse(res);
+          var parsedJSON = JSON.parse(res.text);
           var contestTitles = [];
           parsedJSON.forEach(function (item) {
             contestTitles.push(item.title);
@@ -61,7 +67,7 @@ module.exports = React.createClass({
     });
     this.setState({selProblems: [], selContest: ''});
   },
-  problemCheck: function () {
+  problemCheck: function (id) {
     var problemArray = this.state.selProblems;
     var pr_index;
     var problem = problemArray.find(function (item, index) {
@@ -80,20 +86,25 @@ module.exports = React.createClass({
     }
   },
   render: function () {
+
     var allProblems = this.state.problems.map(function (item) {
       return (
         <Problem
           title={item.title}
           description={item.description}
-          key={item._id}>
+          key={item._id}
+          id={item._id}
+          problemCheck={this.problemCheck}>
         </Problem>
       );
-    })
+    }.bind(this));
     return (
       <div className="problemList">
         <table>
-          {allProblems}
-        </table>
+          <tbody>
+            {allProblems}
+          </tbody>
+        </table>        
       </div>
     );
   }

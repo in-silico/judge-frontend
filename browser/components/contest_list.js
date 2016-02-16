@@ -45,7 +45,9 @@ module.exports = React.createClass({
     return (
       <div className='contestList'>
         <table>
-          {allContests}
+          <tbody>
+            {allContests}
+          </tbody>
         </table>
       </div>
     );

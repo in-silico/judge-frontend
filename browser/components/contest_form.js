@@ -121,7 +121,9 @@ module.exports = React.createClass({
             onChange={this.handleDescriptionChange}>
           </textarea><br />
           <table>
-            {allProblems}
+            <tbody>
+              {allProblems}
+            </tbody>
           </table>
           <br />
           <input type='submit' value = 'Add contest'/>
