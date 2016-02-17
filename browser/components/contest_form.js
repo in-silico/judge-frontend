@@ -62,17 +62,17 @@ module.exports = React.createClass({
   onContestSubmit: function (contest) {
     console.log(JSON.stringify(contest));
     superagent
-    .post(this.props.url + 'contests')
-    .send(contest)
-    .set('Accept', 'application/json')
-    .end(function(err, res){
-      if (err || !res.ok) {
-        console.log('Oh no! error');
-      } else {
-        window.location.pathname='/contests';
-        console.log('yay got ' + JSON.stringify(res.body));
-      }
-  });
+      .post(this.props.url + 'contests')
+      .send(contest)
+      .set('Accept', 'application/json')
+      .end(function(err, res){
+        if (err || !res.ok) {
+          console.log('Oh no! error');
+        } else {
+          window.location.pathname='/contests';
+          console.log('yay got ' + JSON.stringify(res.body));
+        }
+      });
   },
   //additional
   checkProblem: function (id) {

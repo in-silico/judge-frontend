@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "mkdir -p public/js",
     "build-js": "browserify -t [ babelify --presets [ es2015 react ] ] browser/main.js -o public/js/bundle.js",
     "watch-js": "watchify -t [ babelify --presets [ es2015 react ] ] browser/main.js -o public/js/bundle.js -dv",
     "start": "npm run build-js && node ./bin/www",
