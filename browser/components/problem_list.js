@@ -88,7 +88,7 @@ module.exports = React.createClass({
           parsedJSON.forEach(function (item, index) {
             contestList.push({value: item._id, text: item.title});
             if (index == 0)
-              this.setState({selContest: item.title});
+              this.setState({selContest: item._id});
           }.bind(this));
           console.log(JSON.stringify(contestList));
           this.setState({
@@ -122,6 +122,7 @@ module.exports = React.createClass({
   handleSubmit: function () {
     var problemsToAdd = this.state.selProblems;
     var contestToAddTo = this.state.selContest;
+    console.log(contestToAddTo);
     if (!contestToAddTo || !problemsToAdd)
       return;
     this.addProblemsToContest({
