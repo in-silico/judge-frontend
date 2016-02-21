@@ -20,7 +20,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./routes/index.js')(app);
+require('./routes/problems.js')(app);
+require('./routes/problem.js')(app);
 require('./routes/contests.js')(app, '/contests');
+
 
 // app.use('/', routes);
 // app.use('/users', users);
