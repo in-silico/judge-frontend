@@ -28,7 +28,7 @@ module.exports = class UsersTable extends React.Component {
 
   componentWillMount() {
     superAgent
-      .get(this.props.url + "/data/users")
+      .get(this.props.url + "data/users")
       .set('Accept', 'application/json')
       .end((err, res) => {
         if(err)

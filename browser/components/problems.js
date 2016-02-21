@@ -32,7 +32,7 @@ module.exports = class ProblemsTable extends React.Component {
 
   componentWillMount() {
     superAgent
-      .get(this.props.url + "/data/problems")
+      .get(this.props.url + "data/problems")
       .set('Accept', 'application/json')
       .end((err, res) => {
         if(err)

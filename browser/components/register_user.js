@@ -30,7 +30,7 @@ class FormElement extends React.Component {
 module.exports = class RegisterForm extends React.Component {
   render() {
     return (
-      <form action={this.props.url + "/users/new"} method="post">
+      <form action={this.props.url + "users/new"} method="post">
         <br/><br/><br/><br/>
         <FormElement type="input" name="name" required/>
         <FormElement type="email" name="email" required/>
