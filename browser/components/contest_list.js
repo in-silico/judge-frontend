@@ -4,11 +4,12 @@ var superagent = require('superagent');
 var Contest = React.createClass({
   render: function () {
     return (
-      <tr className="contest">
-        <td>{this.props.title}</td>
-        <td>{this.props.description}</td>
-      </tr>
-
+      <div className='contest'>
+        <ul>
+          <li>{this.props.title}</li>
+          <li>{this.props.description}</li>
+        </ul>
+      </div>
     );
   }
 });
@@ -44,11 +45,7 @@ module.exports = React.createClass({
     });
     return (
       <div className='contestList'>
-        <table>
-          <tbody>
-            {allContests}
-          </tbody>
-        </table>
+        {allContests}
       </div>
     );
   }
