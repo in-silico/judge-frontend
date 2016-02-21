@@ -14,10 +14,10 @@ class FormElement extends React.Component {
     return (
       <div>
         <div className="col-4"></div>
-        <div className="col-2">
+        <div className="col-3">
           <label htmlFor={this.state.name}>{value} </label>
         </div>
-        <div className="col-3">
+        <div className="col-2">
           <input type={this.state.type} name={this.state.name} id={this.state.name}/>
         </div>
         <div className="col-3"></div>
@@ -37,9 +37,9 @@ module.exports = class RegisterForm extends React.Component {
         <FormElement type="input" name="username" required/>
         <FormElement type="password" name="password" required/>
         <FormElement type="password" name="confirm Password"required/>
-        <div className="col-6"></div>
+        <div className="col-7"></div>
         <div className="col-4">
-          <input type="submit" name="name" value="Resgister"/>
+          <input type="submit" name="name" value="Register"/>
         </div>
       </form>
     );

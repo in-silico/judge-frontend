@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+  background-color: #BDC3C7;
+}
+
+nav.container_nav {
+  display: block;
+  background-color: #ECF0F1;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+nav.container_nav ul {
+  margin: 0;
+  padding: 0;
+  background-color: #ECF0F1;
+  overflow: hidden;
+  position: static;
+  top: 0;
+  width: 100%;
+}
+
+nav ul.main_menu{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav ul li {
+  float: right;
+  list-style-type: none;
+}
+
+nav > ul > li > a {
+  color: #2C3E50;
+  display: block;
+  line-height: 1.5em;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+li a:hover {
+  border-bottom: 5px solid #E39211;
+  color: #E39211;
+}
+
+li a:active {
+  color: white;
+  border-bottom: 5px solid white;
+}
+
+#options {
+  position: fixed;
+  top: 54px;
+  right: 0%;
+  display: none;
+  width: 20%;
+  background: white;
+  padding: 8px 8px 10px 10px;
+}
+
+#container {
+  position: relative;
+  top: 54px;
+  padding: 10px 10px 10px 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 98%;
+}
+
+table, th, td {
+   border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  height: 30px;
+  background-color: #3A5470;
+  color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: #A4C2E3;
+}
+
+tr:nth-child(even) {
+  background-color: #CCCFD0;
+}

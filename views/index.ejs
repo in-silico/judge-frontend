@@ -1,5 +1,4 @@
 <% include header %>
-<h1>STH</h1>
 <div class="nav-bar">
   <nav class="container_nav">
       <ul class="main_menu">
@@ -11,19 +10,19 @@
               <li><a href="#"></a></li>
             </ul>
         </li>
-        <li><a href="all"><span>Users list</span></a></li>
-        <li><a href="new"><span>New User</span></a></li>
-        <li><a href="#"><span>Register</span></a></li>
-        <li><a href="#"><span>Education</span></a></li>
+        <li><a href="./users/all"><span>Users list</span></a></li>
+        <li><a href="./users/new"><span>Register</span></a></li>
+        <li><a href="/"><span>Education</span></a></li>
         <li><a href="/problems"><span>Problems</span></a></li>
-        <li><a href=""><span>Contests</span></a></li>
-        <li><a href=""><span>New Contest</span></a></li>
+        <li><a href="/"><span>Contests</span></a></li>
+        <li><a href="/"><span>New Contest</span></a></li>
         <li><a href="/"><span>Home</span></a></li>
       </ul>
     </nav>
 </div>
+<script type="text/javascript">
+  console.log(window.backendAddress);
+</script>
+<div id="options"><h3>Testing</h3></div>
 <div id='container'></div>
-<%# <div id='register'></div><br>
-<div id='users'></div><br>
-<div id='problems'></div>%>
 <% include footer %>
