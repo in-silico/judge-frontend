@@ -6,6 +6,8 @@ var ContestList = require('./components/contest_list.js');
 var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
 var Contest = require('./components/contest.js');
+var ProblemForm = require('./components/problem_form.js');
+
 window.backendAddress = 'http://127.0.0.1:8080/'
 
 page('/contests/new', function () {
@@ -25,6 +27,25 @@ page('/contests', function () {
     );
   });
 });
+
+page('/problems/new', function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    ReactDOM.render(
+      <ProblemForm url={window.backendAddress} />,
+      document.getElementById('container')
+    );
+  });
+});
+
+page('/problems/:id', function (ctx) {
+  document.addEventListener('DOMContentLoaded', function () {
+    ReactDOM.render(
+      <Problem url={window.backendAddress} id={ctx.params.id} />,
+      document.getElementById('container')
+    );
+  });
+});
+
 page('/problems', function () {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
@@ -34,14 +55,6 @@ page('/problems', function () {
   });
 });
 
-page('/problem', function () {
-  document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <Problem />,
-      document.getElementById('container')
-    );
-  });
-});
 
 page('/contests/:id', function (ctx) {
   document.addEventListener('DOMContentLoaded', function () {
@@ -51,5 +64,6 @@ page('/contests/:id', function (ctx) {
     );
   });
 });
+
 
 page({ dispatch: true});

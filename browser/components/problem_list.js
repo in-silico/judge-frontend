@@ -1,40 +1,24 @@
 var React = require('react');
 var superagent = require('superagent');
+var Dropdown = require('./dropdown.js');
 
 var Problem = React.createClass({
   handleCheck: function () {
     this.props.problemCheck(this.props.id);
   },
+  handleClick: function (e) {
+    if (e.button == 0)
+      window.location.pathname = 'problems/'+this.props.id;
+  },
   render: function () {
     return (
       <tr className="problem">
-        <td>{this.props.title}</td>
-        <td>{this.props.description}</td>
+        <td><a href={'problems/'+this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
+        <td>{this.props.description.slice(0, 30)}</td>
         <td>Add<input type="checkbox"
           onChange={this.handleCheck}>
         </input></td>
       </tr>
-    );
-  }
-});
-
-var Dropdown = React.createClass({
-  handleChange: function (e) {
-    var val = e.target.value;
-    this.props.dropdownChange(val);
-  },
-  render: function () {
-    var options = this.props.list.map(function (item, index) {
-      return (
-        <option value={item.value} key={index}>{item.text}</option>
-      );
-    });
-    return(
-      <div className="dropdown">
-        <select onChange={this.handleChange}>
-          {options}
-        </select>
-      </div>
     );
   }
 });
