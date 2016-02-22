@@ -5,6 +5,7 @@ var ContestForm = require('./components/contest_form.js');
 var ContestList = require('./components/contest_list.js');
 var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
+var ProblemForm = require('./components/problem_form.js');
 window.backendAddress = 'http://127.0.0.1:8080/'
 
 page('/contests/new', function () {
@@ -37,6 +38,15 @@ page('/problem', function () {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <Problem />,
+      document.getElementById('container')
+    );
+  });
+});
+
+page('/newproblem', function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    ReactDOM.render(
+      <ProblemForm url={window.backendAddress} />,
       document.getElementById('container')
     );
   });
