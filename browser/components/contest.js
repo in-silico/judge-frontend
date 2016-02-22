@@ -1,25 +1,21 @@
 var React = require('react');
-var superagent = require('superagent');
+var utils = require('../utils.js');
 
 var ContestProblem = React.createClass({
   getInitialState: function () {
     return ({title: '', author: ''});
   },
-  getProblemFromServer: function () {
-    superagent
-      .get(this.props.url + 'problems/' + this.props.id)
-      .set('Accept', 'application/json')
-      .end(function (err, res) {
-        if (err){
-          console.log('Oh no!, error');
-        } else {
-          var parsedJSON = JSON.parse(res.text);
-          this.setState({title: parsedJSON.title, author: parsedJSON.author});
-        }
-      }.bind(this));
+  onGetProblem: function (err, res) {
+    if (err){
+      console.log('Oh no!, error');
+    } else {
+      var parsedJSON = JSON.parse(res.text);
+      this.setState({title: parsedJSON.title, author: parsedJSON.author});
+    }
   },
   componentDidMount: function () {
-    this.getProblemFromServer();
+    utils.getResourceFromServer(this.props.url, 'problems/' + this.props.id,
+      this.onGetProblem);
   },
   render: function () {
     return (
@@ -38,27 +34,23 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {title: '', description: '', id:'', problems: []};
   },
-  getContestFromServer: function () {
-    superagent
-      .get(this.props.url + 'contests/' + this.props.id)
-      .set('Accept', 'application/json')
-      .end(function (err, res) {
-        if (err){
-          console.log('Oh no!, error');
-        } else {
-          var parsedJSON = JSON.parse(res.text);
-          console.log(JSON.stringify(parsedJSON.problems));
-          this.setState({
-            title: parsedJSON.title,
-            description: parsedJSON.description,
-            id: parsedJSON._id,
-            problems: parsedJSON.problems
-          });
-        }
-      }.bind(this));
+  onGetContest: function (err, res) {
+    if (err){
+      console.log('Oh no!, error');
+    } else {
+      var parsedJSON = JSON.parse(res.text);
+      console.log(JSON.stringify(parsedJSON.problems));
+      this.setState({
+        title: parsedJSON.title,
+        description: parsedJSON.description,
+        id: parsedJSON._id,
+        problems: parsedJSON.problems
+      });
+    }
   },
   componentDidMount: function () {
-    this.getContestFromServer();
+    utils.getResourceFromServer(this.props.url, 'contests/' + this.props.id,
+      this.onGetContest);
   },
   render: function () {
     var contestProblems = this.state.problems.map(function (item, index) {

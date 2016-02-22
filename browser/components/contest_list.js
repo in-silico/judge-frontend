@@ -1,5 +1,5 @@
 var React = require('react');
-var superagent = require('superagent');
+var utils = require('../utils');
 
 var Contest = React.createClass({
   handleClick: function (e) {
@@ -24,19 +24,15 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {contests: []};
   },
-  getContestsFromServer: function () {
-    superagent
-      .get(this.props.url + 'contests')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err)
-          console.log('Oh no! error');
-        else
-          this.setState({contests: JSON.parse(res.text)});
-      }.bind(this));
+  onGetContests: function (err, res) {
+    if(err)
+      console.log('Oh no! error');
+    else
+      this.setState({contests: JSON.parse(res.text)});
+
   },
   componentDidMount: function () {
-    this.getContestsFromServer();
+    utils.getResourceFromServer(this.props.url, 'contests', this.onGetContests);
   },
   render: function () {
     var allContests = this.state.contests.map(function (item) {

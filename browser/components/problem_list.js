@@ -1,5 +1,4 @@
 var React = require('react');
-var superagent = require('superagent');
 var Dropdown = require('./dropdown.js');
 var utils = require('../utils.js');
 
@@ -9,12 +8,12 @@ var Problem = React.createClass({
   },
   handleClick: function (e) {
     if (e.button == 0)
-      window.location.pathname = 'problems/'+this.props.id;
+      window.location.pathname = 'problems/' + this.props.id;
   },
   render: function () {
     return (
       <tr className="problem">
-        <td><a href={'problems/'+this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
+        <td><a href={'/problems/' + this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
         <td>{this.props.description.slice(0, 30)}</td>
         <td>Add<input type="checkbox"
           onChange={this.handleCheck}>
@@ -76,23 +75,13 @@ module.exports = React.createClass({
     utils.getResourceFromServer(this.props.url, 'problems', this.onGetProblems);
     utils.getResourceFromServer(this.props.url, 'contests', this.onGetContests);
   },
-  addProblemsToContest: function (data) {
-    data.problems.forEach(function (item, index, array) {
-      superagent
-      .post(this.props.url + 'contests/add/' + data.contest)
-      .send(item)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          console.log('Oh no! error');
-        } else {
-          console.log('yay got ' + JSON.stringify(res.body));
-          if (index >= array.length - 1)
-            window.location.pathname = '/contests'
-        }
-      });
-    }.bind(this));
-
+  addProblemsToContest: function (err, res) {
+    if (err || !res.ok) {
+      console.log('Oh no! error');
+    } else {
+      console.log('yay got ' + JSON.stringify(res.body));
+      window.location.pathname = '/contests'
+    }
   },
   handleSubmit: function () {
     var problemsToAdd = this.state.selProblems;
@@ -100,10 +89,9 @@ module.exports = React.createClass({
     console.log(contestToAddTo);
     if (!contestToAddTo || !problemsToAdd)
       return;
-    this.addProblemsToContest({
-      problems: problemsToAdd,
-      contest: contestToAddTo
-    });
+    var resource = 'contests/add/' + contestToAddTo;
+    utils.postToServer(this.props.url, resource, problemsToAdd,
+      this.addProblemsToContest);
     this.setState({selProblems: [], selContest: ''});
   },
   problemCheck: function (id) {

@@ -1,6 +1,6 @@
 var React = require('react');
 var superagent = require('superagent');
-
+var utils = require('../utils.js')
 
 module.exports = React.createClass({
   //Initial State, Component mounting
@@ -27,65 +27,24 @@ module.exports = React.createClass({
     //var problemArray = this.state.selProblems;
     if (!title || !author || !description)
       return;
-    this.onProblemSubmit({
+    utils.postToServer(this.props.url, 'problems', {
       title: title,
       author: author,
       description: description
-    });
+    }, this.onProblemSubmit);
 
     this.setState({title: '', author:'', description: ''});
   },
   //Submission
-  onProblemSubmit: function (problem) {
-    console.log(JSON.stringify(problem));
-    superagent
-      .post(this.props.url + 'problems')
-      .send(problem)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          console.log('Oh no! error');
-        } else {
-          window.location.pathname='/problems';
-          console.log('yay got ' + JSON.stringify(res.body));
-        }
-      });
-  },
-  /*
-  //additional
-  checkProblem: function (id) {
-    var problemArray = this.state.selProblems;
-    var pr_index;
-    var problem = problemArray.find(function (item, index) {
-      if(item.problem_id == id){
-        pr_index = index;
-        return item;
-      }
-    });
-    if (problem){
-      problemArray.splice(pr_index, 1);
-      console.log(JSON.stringify(this.state.selProblems));
-    } else{
-      problemArray.push({problem_id: id});
-      this.setState({selProblems: problemArray});
-      console.log(JSON.stringify(this.state.selProblems));
+  onProblemSubmit: function (err, res) {
+    if (err || !res.ok) {
+      console.log('Oh no! error');
+    } else {
+      window.location.pathname='/problems';
+      console.log('yay got ' + JSON.stringify(res.body));
     }
   },
-  */
-  //The render
   render: function () {
-    /*
-    var allProblems = this.state.problems.map(function (item) {
-      return(
-        <Problem title={item.title}
-          author={item.author}
-          key={item._id}
-          id={item._id}
-          checkProblem={this.checkProblem}>
-        </Problem>
-      );
-    }.bind(this));
-    */
     return (
       <div className='problemForm' onSubmit={this.handleSubmit}>
         <form>
