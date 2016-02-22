@@ -5,6 +5,7 @@ var ContestForm = require('./components/contest_form.js');
 var ContestList = require('./components/contest_list.js');
 var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
+var Contest = require('./components/contest.js');
 var ProblemForm = require('./components/problem_form.js');
 var Submission = require('./components/submission.js');
 
@@ -14,6 +15,15 @@ page('/contests/new', function () {
   document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <ContestForm url={window.backendAddress} />,
+      document.getElementById('container')
+    );
+  });
+});
+
+page('/contests/:id', function (ctx) {
+  document.addEventListener('DOMContentLoaded', function () {
+    ReactDOM.render(
+      <Contest url={window.backendAddress} id={ctx.params.id} />,
       document.getElementById('container')
     );
   });
@@ -55,7 +65,6 @@ page('/problems', function () {
   });
 });
 
-
 page('/submission/:contest_id/:problem_id', function (ctx) {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
@@ -65,7 +74,6 @@ page('/submission/:contest_id/:problem_id', function (ctx) {
   });
 });
 
-
 page('/submission', function () {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
@@ -74,7 +82,5 @@ page('/submission', function () {
     );
   });
 });
-
-
 
 page({ dispatch: true});

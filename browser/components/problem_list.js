@@ -1,5 +1,6 @@
 var React = require('react');
-var superagent = require('superagent');
+var Dropdown = require('./dropdown.js');
+var utils = require('../utils.js');
 
 var Problem = React.createClass({
   handleCheck: function () {
@@ -7,38 +8,17 @@ var Problem = React.createClass({
   },
   handleClick: function (e) {
     if (e.button == 0)
-      window.location.pathname = 'problems/'+this.props.id;
+      window.location.pathname = 'problems/' + this.props.id;
   },
   render: function () {
     return (
       <tr className="problem">
-        <td><a href={'problems/'+this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
+        <td><a href={'/problems/' + this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
         <td>{this.props.description.slice(0, 30)}</td>
         <td>Add<input type="checkbox"
           onChange={this.handleCheck}>
         </input></td>
       </tr>
-    );
-  }
-});
-
-var Dropdown = React.createClass({
-  handleChange: function (e) {
-    var val = e.target.value;
-    this.props.dropdownChange(val);
-  },
-  render: function () {
-    var options = this.props.list.map(function (item) {
-      return (
-        <option value={item.value}>{item.text}</option>
-      );
-    });
-    return(
-      <div className="dropdown">
-        <select onChange={this.handleChange}>
-          {options}
-        </select>
-      </div>
     );
   }
 });
@@ -68,60 +48,40 @@ module.exports = React.createClass({
   getInitialState: function () {
     return ({problems: [], contests:[], selProblems: [], selContest: ''});
   },
-  getProblemsFromServer: function () {
-    superagent
-      .get(this.props.url + 'problems')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err)
-          console.log('Oh no! error');
-        else
-          this.setState({problems: JSON.parse(res.text)});
-      }.bind(this));
+  onGetProblems: function (err, res) {
+    if(err)
+      console.log('Oh no! error');
+    else
+      this.setState({problems: JSON.parse(res.text)});
   },
-  getContestsFromServer: function () {
-    superagent
-      .get(this.props.url + 'contests')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err){
-          console.log('Oh no! error');
-        } else {
-          var parsedJSON = JSON.parse(res.text);
-          var contestList = [];
-          parsedJSON.forEach(function (item, index) {
-            contestList.push({value: item._id, text: item.title});
-            if (index == 0)
-              this.setState({selContest: item._id});
-          }.bind(this));
-          console.log(JSON.stringify(contestList));
-          this.setState({
-            contests: contestList
-          });
-        }
+  onGetContests: function (err, res) {
+    if(err){
+      console.log('Oh no! error');
+    } else {
+      var parsedJSON = JSON.parse(res.text);
+      var contestList = [];
+      parsedJSON.forEach(function (item, index) {
+        contestList.push({value: item._id, text: item.title});
+        if (index == 0)
+          this.setState({selContest: item._id});
       }.bind(this));
+      console.log(JSON.stringify(contestList));
+      this.setState({
+        contests: contestList
+      });
+    }
   },
   componentDidMount: function () {
-    this.getProblemsFromServer();
-    this.getContestsFromServer();
+    utils.getResourceFromServer(this.props.url, 'problems', this.onGetProblems);
+    utils.getResourceFromServer(this.props.url, 'contests', this.onGetContests);
   },
-  addProblemsToContest: function (data) {
-    data.problems.forEach(function (item, index, array) {
-      superagent
-      .post(this.props.url + 'contests/add/' + data.contest)
-      .send(item)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          console.log('Oh no! error');
-        } else {
-          console.log('yay got ' + JSON.stringify(res.body));
-          if (index >= array.length - 1)
-            window.location.pathname = '/contests'
-        }
-      });
-    }.bind(this));
-
+  addProblemsToContest: function (err, res) {
+    if (err || !res.ok) {
+      console.log('Oh no! error');
+    } else {
+      console.log('yay got ' + JSON.stringify(res.body));
+      window.location.pathname = '/contests'
+    }
   },
   handleSubmit: function () {
     var problemsToAdd = this.state.selProblems;
@@ -129,10 +89,9 @@ module.exports = React.createClass({
     console.log(contestToAddTo);
     if (!contestToAddTo || !problemsToAdd)
       return;
-    this.addProblemsToContest({
-      problems: problemsToAdd,
-      contest: contestToAddTo
-    });
+    var resource = 'contests/add/' + contestToAddTo;
+    utils.postToServer(this.props.url, resource, problemsToAdd,
+      this.addProblemsToContest);
     this.setState({selProblems: [], selContest: ''});
   },
   problemCheck: function (id) {

@@ -1,5 +1,5 @@
 var React = require('react');
-var superagent = require('superagent');
+var utils = require('../utils.js');
 
 var Problem = React.createClass({
   handleCheck: function (e) {
@@ -22,19 +22,14 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {title: '', description: '', problems: [], selProblems: []}
   },
-  getProblemsFromServer: function () {
-    superagent
-      .get(this.props.url + 'problems')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err)
-          console.log('Oh no! error');
-        else
-          this.setState({problems: JSON.parse(res.text)});
-      }.bind(this));
+  onGetProblems: function (err, res) {
+    if(err)
+      console.log('Oh no! error');
+    else
+      this.setState({problems: JSON.parse(res.text)});
   },
   componentDidMount: function () {
-    this.getProblemsFromServer();
+    utils.getResourceFromServer(this.props.url, 'problems', this.onGetProblems);
   },
   //Handlers
   handleTitleChange: function (e) {
@@ -50,29 +45,22 @@ module.exports = React.createClass({
     var problemArray = this.state.selProblems;
     if (!title || !description)
       return;
-    this.onContestSubmit({
+    utils.postToServer(this.props.url, 'contests', {
       title: title,
       description: description,
       problems: problemArray
-    });
+    }, this.onContestSubmit);
 
     this.setState({title: '', description: '', selProblems: []});
   },
   //Submission
-  onContestSubmit: function (contest) {
-    console.log(JSON.stringify(contest));
-    superagent
-      .post(this.props.url + 'contests')
-      .send(contest)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          console.log('Oh no! error');
-        } else {
-          window.location.pathname='/contests';
-          console.log('yay got ' + JSON.stringify(res.body));
-        }
-      });
+  onContestSubmit: function (err, res) {
+    if (err || !res.ok) {
+      console.log('Oh no! error');
+    } else {
+      window.location.pathname='/contests';
+      console.log('yay got ' + JSON.stringify(res.body));
+    }
   },
   //additional
   checkProblem: function (id) {
