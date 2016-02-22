@@ -5,11 +5,15 @@ var Problem = React.createClass({
   handleCheck: function () {
     this.props.problemCheck(this.props.id);
   },
+  handleClick: function (e) {
+    if (e.button == 0)
+      window.location.pathname = 'problems/'+this.props.id;
+  },
   render: function () {
     return (
       <tr className="problem">
-        <td>{this.props.title}</td>
-        <td>{this.props.description}</td>
+        <td><a href={'problems/'+this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
+        <td>{this.props.description.slice(0, 30)}</td>
         <td>Add<input type="checkbox"
           onChange={this.handleCheck}>
         </input></td>

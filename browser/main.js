@@ -25,6 +25,25 @@ page('/contests', function () {
     );
   });
 });
+
+page('/problems/new', function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    ReactDOM.render(
+      <ProblemForm url={window.backendAddress} />,
+      document.getElementById('container')
+    );
+  });
+});
+
+page('/problems/:id', function (ctx) {
+  document.addEventListener('DOMContentLoaded', function () {
+    ReactDOM.render(
+      <Problem url={window.backendAddress} id={ctx.params.id} />,
+      document.getElementById('container')
+    );
+  });
+});
+
 page('/problems', function () {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
@@ -34,22 +53,7 @@ page('/problems', function () {
   });
 });
 
-page('/problem', function () {
-  document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <Problem />,
-      document.getElementById('container')
-    );
-  });
-});
 
-page('/newproblem', function () {
-  document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(
-      <ProblemForm url={window.backendAddress} />,
-      document.getElementById('container')
-    );
-  });
-});
+
 
 page({ dispatch: true});
