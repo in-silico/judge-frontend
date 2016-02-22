@@ -1,22 +1,32 @@
 var React = require('react');
 var katex = require('katex');
 var marked = require('marked');
+var utils = require('../utils');
 
 module.exports = React.createClass({
-  rawHTML: function () {
-    var test = "'\\Sigma_{\\frac{3}{4}}' __text__";
-    var list = test.split("'");
-    list.forEach(function (item, index) {
-      if (index % 2 != 0)
-        test = test.replace("'" + item + "'", katex.renderToString(item));
-    });
-    test = marked(test);
-    return {__html: marked(test)};
+  getInitialState: function () {
+    return ({title: '', author:'', description: ''});
   },
+  onGetProblem: function (err, res) {
+    if(err)
+      console.log('Oh no! error');
+    else{
+      var parsedJSON = JSON.parse(res.text);
+      this.setState({title: parsedJSON.title, author: parsedJSON.author, description: parsedJSON.description});
+    }
+  },
+
+  componentDidMount: function () {
+    utils.getResourceFromServer(this.props.url, 'problems/' + this.props.id,
+      this.onGetProblem);
+  },
+
   render: function () {
     return (
-      <div className="Contest">
-        <span dangerouslySetInnerHTML={this.rawHTML()}></span>
+      <div className="Problem">
+        <h1> {this.state.title} </h1>
+        <h3> {this.state.author} </h3>
+        <div dangerouslySetInnerHTML={utils.parseToHTML(this.state.description)}></div>
       </div>
     );
   }
