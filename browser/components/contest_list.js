@@ -2,10 +2,16 @@ var React = require('react');
 var superagent = require('superagent');
 
 var Contest = React.createClass({
+  handleClick: function (e) {
+    console.log(e.button);
+    if (e.button == 0)
+      window.location.pathname = '/contests/' + this.props.id;
+  },
   render: function () {
     return (
       <tr className="contest">
-        <td>{this.props.title}</td>
+        <td><a href={"/contests/" + this.props.id} onClick={this.handleClick}>
+          {this.props.title}</a></td>
         <td>{this.props.description}</td>
       </tr>
 
@@ -38,6 +44,7 @@ module.exports = React.createClass({
         <Contest
           title={item.title}
           description={item.description}
+          id={item._id}
           key={item._id}>
         </Contest>
       );
