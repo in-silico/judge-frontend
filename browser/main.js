@@ -7,7 +7,8 @@ var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
 var Contest = require('./components/contest.js');
 var ProblemForm = require('./components/problem_form.js');
-var Submission = require('./components/submission.js');
+var SubmissionForm = require('./components/submission_form.js');
+var SubmissionList = require('./components/submission_list.js')
 
 window.backendAddress = 'http://127.0.0.1:8080/'
 
@@ -65,19 +66,19 @@ page('/problems', function () {
   });
 });
 
-page('/submission/:contest_id/:problem_id', function (ctx) {
+page('/submissions/new/:contest_id/:problem_id', function (ctx) {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
-      <Submission url={window.backendAddress}  contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id}  />,
+      <SubmissionForm url={window.backendAddress}  contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id}  />,
       document.getElementById('container')
     );
   });
 });
 
-page('/submission', function () {
+page('/submissions', function () {
   document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
-      <Submission url={window.backendAddress} />,
+      <SubmissionList url={window.backendAddress} />,
       document.getElementById('container')
     );
   });
