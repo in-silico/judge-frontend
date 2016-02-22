@@ -20,10 +20,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./routes/index.js')(app);
-require('./routes/contests')(app, '/contests');
-require('./routes/problems')(app, '/problems');
-require('./routes/jsonRoute')(app, '/data')
-require('./routes/users')(app, '/users');
+require('./routes/users.js')(app, '/users');
+require('./routes/problems.js')(app, '/problems');
+require('./routes/submission.js')(app, '/submission');
+require('./routes/contests.js')(app, '/contests');
 
 // app.use('/', routes);
 // app.use('/users', users);

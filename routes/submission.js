@@ -6,12 +6,10 @@ module.exports = function(app, mountPoint) {
     res.render('index', {title : "UTPJudge"});
   });
 
-  router.get('/new', function(req, res) {
+  router.get('/:contest_id/:problem_id', function(req, res) {
     res.render('index', {title : "UTPJudge"});
   });
 
-  router.get('/:id', function(req, res) {
-    res.render('index', {title : "UTPJudge"});
-  });
+
   app.use(mountPoint, router);
 }
