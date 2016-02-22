@@ -38,6 +38,7 @@ module.exports = React.createClass({
   //Submission
   onProblemSubmit: function (problem) {
     console.log(JSON.stringify(problem));
+    console.log(this.props.url);
     superagent
       .post(this.props.url + 'problems')
       .send(problem)
