@@ -1,6 +1,7 @@
 var React = require('react');
 var superagent = require('superagent');
 var Dropdown = require('./dropdown.js');
+var utils = require('../utils.js');
 
 var Problem = React.createClass({
   handleCheck: function () {
@@ -48,42 +49,32 @@ module.exports = React.createClass({
   getInitialState: function () {
     return ({problems: [], contests:[], selProblems: [], selContest: ''});
   },
-  getProblemsFromServer: function () {
-    superagent
-      .get(this.props.url + 'problems')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err)
-          console.log('Oh no! error');
-        else
-          this.setState({problems: JSON.parse(res.text)});
-      }.bind(this));
+  onGetProblems: function (err, res) {
+    if(err)
+      console.log('Oh no! error');
+    else
+      this.setState({problems: JSON.parse(res.text)});
   },
-  getContestsFromServer: function () {
-    superagent
-      .get(this.props.url + 'contests')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err){
-          console.log('Oh no! error');
-        } else {
-          var parsedJSON = JSON.parse(res.text);
-          var contestList = [];
-          parsedJSON.forEach(function (item, index) {
-            contestList.push({value: item._id, text: item.title});
-            if (index == 0)
-              this.setState({selContest: item._id});
-          }.bind(this));
-          console.log(JSON.stringify(contestList));
-          this.setState({
-            contests: contestList
-          });
-        }
+  onGetContests: function (err, res) {
+    if(err){
+      console.log('Oh no! error');
+    } else {
+      var parsedJSON = JSON.parse(res.text);
+      var contestList = [];
+      parsedJSON.forEach(function (item, index) {
+        contestList.push({value: item._id, text: item.title});
+        if (index == 0)
+          this.setState({selContest: item._id});
       }.bind(this));
+      console.log(JSON.stringify(contestList));
+      this.setState({
+        contests: contestList
+      });
+    }
   },
   componentDidMount: function () {
-    this.getProblemsFromServer();
-    this.getContestsFromServer();
+    utils.getResourceFromServer(this.props.url, 'problems', this.onGetProblems);
+    utils.getResourceFromServer(this.props.url, 'contests', this.onGetContests);
   },
   addProblemsToContest: function (data) {
     data.problems.forEach(function (item, index, array) {

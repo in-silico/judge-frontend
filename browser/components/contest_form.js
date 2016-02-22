@@ -1,5 +1,6 @@
 var React = require('react');
 var superagent = require('superagent');
+var utils = require('../utils.js');
 
 var Problem = React.createClass({
   handleCheck: function (e) {
@@ -22,19 +23,14 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {title: '', description: '', problems: [], selProblems: []}
   },
-  getProblemsFromServer: function () {
-    superagent
-      .get(this.props.url + 'problems')
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if(err)
-          console.log('Oh no! error');
-        else
-          this.setState({problems: JSON.parse(res.text)});
-      }.bind(this));
+  onGetProblems: function (err, res) {
+    if(err)
+      console.log('Oh no! error');
+    else
+      this.setState({problems: JSON.parse(res.text)});
   },
   componentDidMount: function () {
-    this.getProblemsFromServer();
+    utils.getResourceFromServer(this.props.url, 'problems', this.onGetProblems);
   },
   //Handlers
   handleTitleChange: function (e) {
