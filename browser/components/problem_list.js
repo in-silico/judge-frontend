@@ -24,9 +24,9 @@ var Dropdown = React.createClass({
     this.props.dropdownChange(val);
   },
   render: function () {
-    var options = this.props.list.map(function (item) {
+    var options = this.props.list.map(function (item, index) {
       return (
-        <option value={item.value}>{item.text}</option>
+        <option value={item.value} key={index}>{item.text}</option>
       );
     });
     return(

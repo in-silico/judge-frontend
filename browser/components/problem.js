@@ -15,8 +15,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <div className="Contest">
-        <span dangerouslySetInnerHTML={this.rawHTML()}></span>
+      <div className="Contest" dangerouslySetInnerHTML={this.rawHTML()}>        
       </div>
     );
   }
