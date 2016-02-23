@@ -1,5 +1,5 @@
 var React = require('react');
-var superagent = require('superagent');
+var utils = require('../utils');
 
 
 module.exports = React.createClass({
@@ -38,29 +38,22 @@ module.exports = React.createClass({
 
     dataSourceCode.append('problem_id', this.props.problem_id);
     dataSourceCode.append('contest_id', this.props.contest_id);
-    dataSourceCode.append('user_id', this.props.user_id);
-    this.onSubmissionSubmit(dataSourceCode);
+    dataSourceCode.append('user_id', this.state.user_id);
+    console.log(this.state.user_id);
+    utils.postToServer(this.props.url, 'submissions', dataSourceCode,
+      this.onSubmissionSubmit);
 
     this.setState({user_id: '', source_code:''});
   },
 
   //Submission
-  onSubmissionSubmit: function (submission) {
-    console.log(JSON.stringify(submission));
-    console.log(this.props.url);
-    console.log(submission);
-    superagent
-      .post(this.props.url + 'submissions')
-      .send(submission)
-      .set('Accept', 'application/json')
-      .end(function(err, res){
-        if (err || !res.ok) {
-          console.log('Oh no! error');
-        } else {
-          //window.location.pathname='/problems';
-          //console.log('yay got ' + JSON.stringify(res.body));
-        }
-      });
+  onSubmissionSubmit: function (err, res) {
+    if (err || !res.ok) {
+      console.log('Oh no! error');
+    } else {
+      console.log('Yay!');
+      window.location.pathname = '/submissions'
+    }
   },
 
   //The render

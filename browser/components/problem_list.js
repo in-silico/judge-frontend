@@ -14,7 +14,7 @@ var Problem = React.createClass({
     return (
       <tr className="problem">
         <td><a href={'/problems/' + this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
-        <td>{this.props.description.slice(0, 30)}</td>
+        <td>{this.props.author}</td>
         <td>Add<input type="checkbox"
           onChange={this.handleCheck}>
         </input></td>
@@ -122,6 +122,7 @@ module.exports = React.createClass({
       return (
         <Problem
           title={item.title}
+          author={item.author}
           description={item.description}
           key={item._id}
           id={item._id}
