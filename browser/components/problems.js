@@ -1,61 +1,56 @@
 var React = require('react');
-var superAgent = require('superagent');
+var utils = require('../utils.js');
 
-class ProblemElement extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      problem_id: this.props.problem.problem_id,
-      problem_name: this.props.problem.title,
-      problem_category: this.props.problem.category
-    };
-  }
-
-  render() {
-    return (
-      <tr>
-        <td>{this.state.problem_id}</td>
-        <td>{this.state.problem_name}</td>
-        <td>{this.state.problem_category}</td>
-      </tr>
-    );
-  }
-}
-
-module.exports = class ProblemsTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      problems: []
-    };
-  }
-
-  componentWillMount() {
-    superAgent
-      .get(this.props.url + "data/problems")
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if(err)
-          console.log('Oh no! error');
-        else {
-          this.setState({problems: JSON.parse(res.text)});
-        }
-      });
-  }
-
-  render() {
-    console.log(this.state.problems);
-    var problems = this.state.problems.map((item) => {
-      return <ProblemElement problem={item} />
+var ProblemElement = React.createClass({
+  getInitialState: function() {
+    var problem = this.props.item;
+    return ({
+      id: problem.id,
+      title: problem.title,
+      tags=[],
+      state=false,
+      solvedBy=0
     });
+  },
+  render: function() {
+    return (
+      <tr className="judgeProblem">
+        <td>{this.state.id}</td>
+        <td><a href='/problems/' + this.state.id>
+          {this.state.title}
+        </a></td>
+      </tr>
+    )
+  }
+});
 
+module.exports = React.createClass({
+  getInitialProps: function() {
+    return ({page: 1});
+  },
+  getInitialState: function() {
+    return ({problems: [], page: this.props.page, perPage: 25});
+  },
+  onGetProblems: function(err, res) {
+    if (err) throw err;
+    this.state({problems: JSON.parse(res.text)})
+  },
+  componentDidMount: function() {
+    utils.getResourceFromServer(this.props.url, 'problems/', this.onGetProblems);
+  },
+  render: function() {
+    var i = this.state.page * this.state.perPage;
+    var problems =  this.state.problems
+                    .slice(i, (i + this.state.perPage) % this.state.problems.length)
+                    .map((item) => {
+                      return <ProblemElement problem={item} />
+                    });
     return (
       <table>
         <thead>
           <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Category</th>
           </tr>
         </thead>
         <tbody>
@@ -64,4 +59,4 @@ module.exports = class ProblemsTable extends React.Component {
       </table>
     );
   }
-}
+})

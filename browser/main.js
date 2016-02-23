@@ -3,9 +3,9 @@ var React = require('react');
 var page = require('page');
 var ContestForm = require('./components/contest_form.js');
 var ContestList = require('./components/contest_list.js');
-var Users = require('./components/users');
-var Problems = require('./components/problems');
-var Register = require('./components/register_user');
+var Users = require('./components/users.js');
+var Problems = require('./components/problems.js');
+var Register = require('./components/register_user.js');
 var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
 var Contest = require('./components/contest.js');
@@ -42,10 +42,10 @@ page('/contests', function () {
 //  });
 });
 
-// page("/problems", () => {
+// page("/problems/page/:id", (ctx) => {
 //  document.addEventListener('DOMContentLoaded', function() {
 //     ReactDOM.render(
-//       <Problems url={window.backendAddress}/>,
+//       <Problems url={window.backendAddress} page={ctx.params.id}/>,
 //       document.getElementById('container')
 //     );
 //   });

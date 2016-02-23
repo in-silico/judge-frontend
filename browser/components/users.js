@@ -1,5 +1,5 @@
 var React = require('react');
-var superAgent = require('superagent');
+var utils = require('../utils.js');
 
 class UserElement extends React.Component {
   constructor(props) {
@@ -26,19 +26,17 @@ module.exports = class UsersTable extends React.Component {
     };
   }
 
-  componentWillMount() {
-    superAgent
-      .get(this.props.url + "data/users")
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if(err)
-          console.log('Oh no! error');
-        else {
-          this.setState({users: JSON.parse(res.text)});
-          console.log(this.state.users);
-        }
-      });
+  onGetUsers() {
+    if (err) {
+      console.log('Oh no! error');
+    } else {
+      this.setState({users: JSON.parse(res.text)});
     }
+  }
+
+  componentWillMount() {
+      utils.getResourceFromServer(this.props.url, "users", onGetUsers);
+  }
 
   render() {
     var keys = ["username", "email", "name" ];
