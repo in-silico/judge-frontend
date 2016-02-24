@@ -1,22 +1,22 @@
 var ReactDOM = require('react-dom');
 var React = require('react');
 var page = require('page');
+var Contest = require('./components/contest.js');
 var ContestForm = require('./components/contest_form.js');
 var ContestList = require('./components/contest_list.js');
-var Users = require('./components/users.js');
-var Problems = require('./components/problems.js');
-var Register = require('./components/user_form.js');
-var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
-var Contest = require('./components/contest.js');
 var ProblemForm = require('./components/problem_form.js');
+var ProblemList = require('./components/problem_list.js');
+var Users = require('./components/users.js');
+var Register = require('./components/user_form.js');
+var Problems = require('./components/problems.js');
+var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 
 window.backendAddress = 'http://127.0.0.1:8080/';
 
-
-page('/contests/new', () => {
+page('/contests/new', function() {
   document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <ContestForm url={window.backendAddress} />,
@@ -43,24 +43,23 @@ page('/contests', function () {
   });
 });
 
-
-page("/users/new", () => {
- document.addEventListener('DOMContentLoaded', function() {
+page("/users/new", function() {
+  document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <Register url={window.backendAddress}/>,
       document.getElementById('container')
     );
- });
+  });
 });
 
-page("/users", () => {
- document.addEventListener('DOMContentLoaded', function() {
+page("/users", function() {
+  document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <Users url={window.backendAddress}/>,
       document.getElementById('container')
     );
   });
- });
+});
 
 page('/problems/new', function () {
   document.addEventListener('DOMContentLoaded', function() {
