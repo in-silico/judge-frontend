@@ -1,44 +1,34 @@
 var React = require('react');
 var utils = require('../utils.js');
 
-class UserElement extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: this.props.user
-    };
-  }
-
-  render() {
+var UserElement = React.createClass({
+  getInitialState: function() {
+    return ({ user: this.props.user});
+  },
+  render: function() {
     var keys = Object.keys(this.state.user);
     var user = keys.map((item) => {
       return <td>{this.state.user[item]}</td>;
     });
     return <tr>{user}</tr>;
   }
-}
+});
 
-module.exports = class UsersTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    };
-  }
-
-  onGetUsers() {
+module.exports = React.createClass ({
+  getInitialState: function() {
+    return ({ users: [] });
+  },
+  onGetUsers: function() {
     if (err) {
       console.log('Oh no! error');
     } else {
       this.setState({users: JSON.parse(res.text)});
     }
-  }
-
-  componentWillMount() {
+  },
+  componentWillMount: function() {
       utils.getResourceFromServer(this.props.url, "users", onGetUsers);
-  }
-
-  render() {
+  },
+  render: function() {
     var keys = ["username", "email", "name" ];
     var headers = keys.map((title) => {
       title = title[0].toUpperCase() + title.slice(1);
@@ -58,4 +48,4 @@ module.exports = class UsersTable extends React.Component {
       </table>
     );
   }
-}
+});
