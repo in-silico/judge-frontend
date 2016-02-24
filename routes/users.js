@@ -8,7 +8,7 @@ module.exports = function(app, mountPoint) {
   router.get('/new', function(req, res) {
     res.render('index', {title: "UTP Judge"});
   });
-  router.get('/all', function(req, res) {
+  router.get('/', function(req, res) {
     res.render('index', {title: "UTP Users"});
   });
   app.use(mountPoint, router);

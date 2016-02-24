@@ -23,8 +23,6 @@ require('./routes/index.js')(app);
 require('./routes/users.js')(app, '/users');
 require('./routes/problems.js')(app, '/problems');
 require('./routes/submissions.js')(app, '/submissions');
-//require('./routes/problem.js')(app);
-//require('./routes/newproblem.js')(app);
 require('./routes/contests.js')(app, '/contests');
 
 // app.use('/', routes);

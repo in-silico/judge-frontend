@@ -7,9 +7,9 @@ var ProblemElement = React.createClass({
     return ({
       id: problem.id,
       title: problem.title,
-      tags: [],
-      state: false,
-      solvedBy: 0
+      tags: [], /*Todo*/
+      state: false,/*Todo*/
+      solvedBy: 0/*Todo*/
     });
   },
   render: function() {
