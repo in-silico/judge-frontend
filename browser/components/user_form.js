@@ -1,15 +1,14 @@
 var React = require('react');
 
-class FormElement extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+var FormElement = React.createClass({
+  getInitialState: function() {
+    return ({
       type: this.props.type,
       name: this.props.name
-    };
-  }
+    });
+  },
 
-  render() {
+  render: function() {
     var value = this.state.name[0].toUpperCase() + this.state.name.slice(1);
     return (
       <div>
@@ -25,10 +24,10 @@ class FormElement extends React.Component {
       </div>
     );
   }
-}
+});
 
-module.exports = class RegisterForm extends React.Component {
-  render() {
+module.exports = React.createClass({
+  render: function() {
     return (
       <form action={this.props.url + "users/new"} method="post">
         <br/><br/><br/><br/>
@@ -44,4 +43,4 @@ module.exports = class RegisterForm extends React.Component {
       </form>
     );
   }
-}
+});
