@@ -7,16 +7,16 @@ var ProblemElement = React.createClass({
     return ({
       id: problem.id,
       title: problem.title,
-      tags=[],
-      state=false,
-      solvedBy=0
+      tags: [],
+      state: false,
+      solvedBy: 0
     });
   },
   render: function() {
     return (
       <tr className="judgeProblem">
         <td>{this.state.id}</td>
-        <td><a href='/problems/' + this.state.id>
+        <td><a href={'/problems/' + this.state.id}>
           {this.state.title}
         </a></td>
       </tr>

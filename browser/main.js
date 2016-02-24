@@ -5,24 +5,24 @@ var ContestForm = require('./components/contest_form.js');
 var ContestList = require('./components/contest_list.js');
 var Users = require('./components/users.js');
 var Problems = require('./components/problems.js');
-var Register = require('./components/register_user.js');
+var Register = require('./components/user_form.js');
 var ProblemList = require('./components/problem_list.js');
 var Problem = require('./components/problem.js');
 var Contest = require('./components/contest.js');
 var ProblemForm = require('./components/problem_form.js');
 var SubmissionForm = require('./components/submission_form.js');
-var SubmissionList = require('./components/submission_list.js')
+var SubmissionList = require('./components/submission_list.js');
 
-window.backendAddress = 'http://127.0.0.1:8080/'
+window.backendAddress = 'http://127.0.0.1:8080/';
 
 
 page('/contests/new', () => {
-  //document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <ContestForm url={window.backendAddress} />,
       document.getElementById('container')
     );
-  //});
+  });
 });
 
 page('/contests/:id', function (ctx) {
@@ -40,17 +40,9 @@ page('/contests', function () {
       <ContestList url={window.backendAddress} />,
       document.getElementById('container')
     );
-//  });
+  });
 });
 
-// page("/problems/page/:id", (ctx) => {
-//  document.addEventListener('DOMContentLoaded', function() {
-//     ReactDOM.render(
-//       <Problems url={window.backendAddress} page={ctx.params.id}/>,
-//       document.getElementById('container')
-//     );
-//   });
-// });
 
 page("/users/new", () => {
  document.addEventListener('DOMContentLoaded', function() {
@@ -67,6 +59,7 @@ page("/users", () => {
       <Users url={window.backendAddress}/>,
       document.getElementById('container')
     );
+  });
  });
 
 page('/problems/new', function () {
