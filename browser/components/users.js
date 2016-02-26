@@ -21,15 +21,16 @@ module.exports = React.createClass ({
   onGetUsers: function() {
     if (err) {
       console.log('Oh no! error');
-    } else {
+    }
+    else {
       this.setState({users: JSON.parse(res.text)});
     }
   },
   componentWillMount: function() {
-      utils.getResourceFromServer(this.props.url, "users", onGetUsers);
+    utils.getResourceFromServer(this.props.url, "users", onGetUsers);
   },
   render: function() {
-    var keys = ["username", "email", "name" ];
+    var keys = ["username", "email", "name"];
     var headers = keys.map((title) => {
       title = title[0].toUpperCase() + title.slice(1);
       return <th>{title}</th>

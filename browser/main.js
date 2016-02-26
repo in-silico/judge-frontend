@@ -14,96 +14,96 @@ var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 
-window.backendAddress = 'http://127.0.0.1:8080/';
+window.backendAddress = 'http://127.0.0.1:3000/'; // Change 3000 for 8080 when running the backend simultaneously
 
 page('/contests/new', function() {
-  document.addEventListener('DOMContentLoaded', function() {
+  //document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <ContestForm url={window.backendAddress} />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page('/contests/:id', function (ctx) {
-  document.addEventListener('DOMContentLoaded', function () {
+//  document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <Contest url={window.backendAddress} id={ctx.params.id} />,
       document.getElementById('container')
     );
-  });
+//  });
 });
 
 page('/contests', function () {
-  document.addEventListener('DOMContentLoaded', function () {
+//  document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <ContestList url={window.backendAddress} />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page("/users/new", function() {
-  document.addEventListener('DOMContentLoaded', function() {
+  //document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <Register url={window.backendAddress}/>,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page("/users", function() {
-  document.addEventListener('DOMContentLoaded', function() {
+  //document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <Users url={window.backendAddress}/>,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page('/problems/new', function () {
-  document.addEventListener('DOMContentLoaded', function() {
+  //document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
       <ProblemForm url={window.backendAddress} />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page('/problems/:id', function (ctx) {
-  document.addEventListener('DOMContentLoaded', function () {
+  //document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <Problem url={window.backendAddress} id={ctx.params.id} />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page('/problems', function () {
-  document.addEventListener('DOMContentLoaded', function () {
+  //document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <ProblemList url={window.backendAddress} />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page('/submissions/new/:contest_id/:problem_id', function (ctx) {
-  document.addEventListener('DOMContentLoaded', function () {
+  //document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <SubmissionForm url={window.backendAddress}  contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id}  />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page('/submissions', function () {
-  document.addEventListener('DOMContentLoaded', function () {
+  //document.addEventListener('DOMContentLoaded', function () {
     ReactDOM.render(
       <SubmissionList url={window.backendAddress} />,
       document.getElementById('container')
     );
-  });
+  //});
 });
 
 page({ dispatch: true});

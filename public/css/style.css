@@ -34,7 +34,7 @@ html {
 }
 
 .contestForm table{
-  width: 100%;  
+  width: 100%;
 }
 
 
@@ -44,4 +44,12 @@ html {
 
 .problemList table {
   width: 100%;
+}
+
+.container_nav ul li {
+  display: inline-block;
+}
+
+.container_nav ul li {
+  display: inline-block;
 }

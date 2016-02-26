@@ -7,8 +7,6 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {title: '', author:'', description: ''}
   },
-
-
   //Handlers
   handleTitleChange: function (e) {
     this.setState({title: e.target.value});

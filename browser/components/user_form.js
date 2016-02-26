@@ -7,7 +7,6 @@ var FormElement = React.createClass({
       name: this.props.name
     });
   },
-
   render: function() {
     var value = this.state.name[0].toUpperCase() + this.state.name.slice(1);
     return (
@@ -29,7 +28,7 @@ var FormElement = React.createClass({
 module.exports = React.createClass({
   render: function() {
     return (
-      <form action={this.props.url + "users/new"} method="post">
+      <form action={this.props.url + "users"} method="post">
         <br/><br/><br/><br/>
         <FormElement type="input" name="name" required/>
         <FormElement type="email" name="email" required/>
