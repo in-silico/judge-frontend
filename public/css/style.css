@@ -135,3 +135,17 @@ a {
     text-decoration: none;
     outline: none;
 }
+
+.container_nav ul li {
+  display: inline-block;
+}
+
+#options {
+  position: fixed;
+  top: 54px;
+  right: 0%;
+  display: none;
+  width: 20%;
+  background: white;
+  padding: 8px 8px 10px 10px;
+}
