@@ -33,7 +33,7 @@ module.exports = React.createClass({
   },
   onGetProblems: function(err, res) {
     if (err) throw err;
-    this.state({problems: JSON.parse(res.text)})
+    this.state({problems: res.body})
   },
   componentDidMount: function() {
     utils.getResourceFromServer(this.props.url, 'problems/', this.onGetProblems);

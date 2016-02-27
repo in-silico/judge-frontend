@@ -14,7 +14,7 @@ var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 
-window.backendAddress = 'http://127.0.0.1:3000/'; // Change 3000 for 8080 when running the backend simultaneously
+window.backendAddress = 'http://127.0.0.1:8080/'; // Change 3000 for 8080 when running the backend simultaneously
 
 page('/contests/new', function() {
   //document.addEventListener('DOMContentLoaded', function() {

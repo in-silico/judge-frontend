@@ -18,16 +18,13 @@ module.exports = React.createClass ({
   getInitialState: function() {
     return ({ users: [] });
   },
-  onGetUsers: function() {
-    if (err) {
-      console.log('Oh no! error');
-    }
-    else {
-      this.setState({users: JSON.parse(res.text)});
-    }
+  onGetUsers: function(err, res) {
+    if (err)
+      return console.log('Oh no! error');
+    this.setState({users: res.body});
   },
-  componentWillMount: function() {
-    utils.getResourceFromServer(this.props.url, "users", onGetUsers);
+  componentDidMount: function() {
+    utils.getResourceFromServer(this.props.url, 'users/', this.onGetUsers);
   },
   render: function() {
     var keys = ["username", "email", "name"];
