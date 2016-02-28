@@ -28,7 +28,7 @@ module.exports = React.createClass({
     if(err)
       console.log('Oh no! error');
     else
-      this.setState({contests: JSON.parse(res.text)});
+      this.setState({contests: res.body});
 
   },
   componentDidMount: function () {

@@ -26,7 +26,7 @@ module.exports = React.createClass({
     if(err)
       console.log('Oh no! error');
     else
-      this.setState({problems: JSON.parse(res.text)});
+      this.setState({problems: res.body});
   },
   componentDidMount: function () {
     utils.getResourceFromServer(this.props.url, 'problems', this.onGetProblems);
@@ -50,7 +50,6 @@ module.exports = React.createClass({
       description: description,
       problems: problemArray
     }, this.onContestSubmit);
-
     this.setState({title: '', description: '', selProblems: []});
   },
   //Submission
