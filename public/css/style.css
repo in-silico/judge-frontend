@@ -149,3 +149,16 @@ a {
   background: white;
   padding: 8px 8px 10px 10px;
 }
+
+.contestForm table{
+  width: 100%;
+}
+
+
+.contestList table {
+  width: 100%;
+}
+
+.problemList table {
+  width: 100%;
+}

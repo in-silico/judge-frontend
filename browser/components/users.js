@@ -3,10 +3,10 @@ var utils = require('../utils.js');
 
 var UserElement = React.createClass({
   getInitialState: function() {
-    return ({ user: this.props.user});
+    return ({user: this.props.user, keys: this.props.keys});
   },
   render: function() {
-    var keys = Object.keys(this.state.user);
+    var keys = this.state.keys;
     var user = keys.map((item) => {
       return <td>{this.state.user[item]}</td>;
     });
@@ -27,14 +27,14 @@ module.exports = React.createClass ({
     utils.getResourceFromServer(this.props.url, 'users/', this.onGetUsers);
   },
   render: function() {
-    var keys = ["username", "email", "name"];
+    var keys = ["username", "name", "email"];
     var headers = keys.map((title) => {
       title = title[0].toUpperCase() + title.slice(1);
       return <th>{title}</th>
     });
 
     var elements = this.state.users.map((item) => {
-      return <UserElement user={item}/>;
+      return <UserElement user={item} keys={keys}/>;
     });
 
     return (

@@ -8,7 +8,6 @@ module.exports = React.createClass({
     return {user_id: '', source_code:''}
   },
 
-
   //Handlers
   handleUserIdChange: function (e) {
     this.setState({user_id: e.target.value});

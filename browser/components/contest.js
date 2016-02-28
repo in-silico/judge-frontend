@@ -9,7 +9,7 @@ var ContestProblem = React.createClass({
     if (err){
       console.log('Oh no!, error');
     } else {
-      var parsedJSON = JSON.parse(res.text);
+      var parsedJSON = res.body;
       this.setState({title: parsedJSON.title, author: parsedJSON.author});
     }
   },

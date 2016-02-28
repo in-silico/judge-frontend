@@ -9,13 +9,13 @@ var Submission = React.createClass({
     if (err)
       console.log('Oh no!, error');
     else
-      this.setState({problemTitle: JSON.parse(res.text).title});
+      this.setState({problemTitle: res.body.title});
   },
   onGetContest: function (err, res) {
     if (err)
       console.log('Oh no!, error');
     else
-      this.setState({contestTitle: JSON.parse(res.text).title});
+      this.setState({contestTitle: res.body.title});
   },
   componentDidMount: function () {
     utils.getResourceFromServer(this.props.url, 'problems/' + this.props.pid,

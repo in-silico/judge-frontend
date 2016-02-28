@@ -3,7 +3,7 @@ var router = express.Router();
 
 module.exports = function(app, mountPoint) {
   router.post('/', function(req, res) {
-    res.send("Registro Exitoso :D!!");
+    res.render('index');
   });
   router.get('/new', function(req, res) {
     res.render('index', {title: "UTP Judge"});
