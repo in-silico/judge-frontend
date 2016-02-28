@@ -1,3 +1,55 @@
+body {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #BDC3C7;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 10px auto;
+}
+#logo-nav {
+  font-size: 25px;
+  font-weight: bold;
+}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2f4154;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {
+  color: #48c9b0;
+  vertical-align:middle;
+  font-weight: bold;
+}
+
+ul.topnav li a.active {
+  background-color: #2f4154;
+}
+
+ul.topnav ul.right {
+    float: right;
+    list-style-type: none;
+}
+
+@media screen and (max-width: 600px){
+    ul.topnav ul.right,
+    ul.topnav li {float: none;}
+}
+
 * {
   box-sizing: border-box;
 }
@@ -27,14 +79,79 @@
 .col-12 {width: 100%;}
 
 .first-row {margin-top: 50px;}
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../img/fontawesome-webfont.eot?v=4.5.0');
+  src: url('../img/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),
+  url('../img/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),
+  url('../img/fontawesome-webfont.woff?v=4.5.0') format('woff'),
+  url('../img/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),
+  url('../img/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+#options {
+  position: fixed;
+  top: 54px;
+  right: 0%;
+  display: none;
+  width: 20%;
+  background: white;
+  padding: 8px 8px 10px 10px;
+}
 
-html {
-  font-family: "Lucida Sans", sans-serif;
-  padding: 0;
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-bars:before {
+  content: "\f0c9";
+}
+
+.footer {
+  background-color: #336666;
+  padding: 10px;
+}
+
+.footer-copyright {
+  background-color: #339999;
+  padding: 10px;
+}
+
+.content {
+  background-color: #fff;
+  margin: 10px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+.container_nav ul li {
+  display: inline-block;
+}
+
+#options {
+  position: fixed;
+  top: 54px;
+  right: 0%;
+  display: none;
+  width: 20%;
+  background: white;
+  padding: 8px 8px 10px 10px;
 }
 
 .contestForm table{
-  width: 100%;  
+  width: 100%;
 }
 
 
