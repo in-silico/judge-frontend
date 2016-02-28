@@ -9,7 +9,7 @@ module.exports = React.createClass({
 
   onGetUser: function (err, res) {
     if(err)
-      console.log('Oh no! error');
+      console.log('Oh no! error: ' + err);
     else
       this.setState({user: res.body});
   },

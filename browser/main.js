@@ -15,103 +15,84 @@ var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 var TestAuth = require('./components/test_auth.js');
 
-window.backendAddress = 'http://api.judge.is/';
+var config = require('../config/development.js');
+window.backendAddress = config.backend.url;
 
 page('/contests/new', function() {
-  //document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(
-      <ContestForm url={window.backendAddress} />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <ContestForm url={window.backendAddress} />,
+    document.getElementById('container')
+  );
 });
 
 page('/contests/:id', function (ctx) {
-//  document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <Contest url={window.backendAddress} id={ctx.params.id} />,
-      document.getElementById('container')
-    );
-//  });
+  ReactDOM.render(
+    <Contest url={window.backendAddress} id={ctx.params.id} />,
+    document.getElementById('container')
+  );
 });
 
 page('/contests', function () {
-//  document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <ContestList url={window.backendAddress} />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <ContestList url={window.backendAddress} />,
+    document.getElementById('container')
+  );
 });
 
 page("/users/new", function() {
-  //document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(
-      <Register url={window.backendAddress}/>,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <Register url={window.backendAddress}/>,
+    document.getElementById('container')
+  );
 });
 
 page("/users", function() {
-  //document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(
-      <Users url={window.backendAddress}/>,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <Users url={window.backendAddress}/>,
+    document.getElementById('container')
+  );
 });
 
 page('/problems/new', function () {
-  //document.addEventListener('DOMContentLoaded', function() {
-    ReactDOM.render(
-      <ProblemForm url={window.backendAddress} />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <ProblemForm url={window.backendAddress} />,
+    document.getElementById('container')
+  );
 });
 
 page('/problems/:id', function (ctx) {
-  //document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <Problem url={window.backendAddress} id={ctx.params.id} />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <Problem url={window.backendAddress} id={ctx.params.id} />,
+    document.getElementById('container')
+  );
 });
 
 page('/problems', function () {
-  //document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <ProblemList url={window.backendAddress} />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <ProblemList url={window.backendAddress} />,
+    document.getElementById('container')
+  );
 });
 
 page('/submissions/new/:contest_id/:problem_id', function (ctx) {
-  //document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <SubmissionForm url={window.backendAddress}  contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id}  />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <SubmissionForm url={window.backendAddress}  contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id}  />,
+    document.getElementById('container')
+  );
 });
 
 page('/submissions', function () {
-  //document.addEventListener('DOMContentLoaded', function () {
-    ReactDOM.render(
-      <SubmissionList url={window.backendAddress} />,
-      document.getElementById('container')
-    );
-  //});
+  ReactDOM.render(
+    <SubmissionList url={window.backendAddress} />,
+    document.getElementById('container')
+  );
 });
 
 page('/', function() {
-    ReactDOM.render(
-      <TestAuth url={window.backendAddress} />,
-      document.getElementById('testAuth')
-    );
+  ReactDOM.render(
+    <TestAuth url={window.backendAddress} />,
+    document.getElementById('testAuth')
+  );
 });
 
 page({ dispatch: true});

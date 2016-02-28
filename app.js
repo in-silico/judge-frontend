@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var GithubStrategy = require('passport-github').Strategy;
+
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/' + env);
 var oauth = require('./config/oauth');
 
 passport.use(new GithubStrategy(oauth.github,
