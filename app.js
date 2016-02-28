@@ -4,6 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var GithubStrategy = require('passport-github').Strategy;
+var oauth = require('./config/oauth');
+
+passport.use(new GithubStrategy(oauth.github,
+      function(accessToken, refreshToken, profile, cb) {
+        return cb(null, profile);
+      }));
 
 var app = express();
 
@@ -24,6 +32,7 @@ require('./routes/users.js')(app, '/users');
 require('./routes/problems.js')(app, '/problems');
 require('./routes/submissions.js')(app, '/submissions');
 require('./routes/contests.js')(app, '/contests');
+require('./routes/auth.js')(app, '/', passport);
 
 // app.use('/', routes);
 // app.use('/users', users);

@@ -13,8 +13,9 @@ var Problems = require('./components/problems.js');
 var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
+var TestAuth = require('./components/test_auth.js');
 
-window.backendAddress = 'http://127.0.0.1:8080/';
+window.backendAddress = 'http://api.judge.is/';
 
 page('/contests/new', function() {
   //document.addEventListener('DOMContentLoaded', function() {
@@ -104,6 +105,13 @@ page('/submissions', function () {
       document.getElementById('container')
     );
   //});
+});
+
+page('/', function() {
+    ReactDOM.render(
+      <TestAuth url={window.backendAddress} />,
+      document.getElementById('testAuth')
+    );
 });
 
 page({ dispatch: true});
