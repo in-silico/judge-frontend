@@ -1,24 +1,28 @@
 <% include header %>
-<div class="nav-bar">
-  <nav class="container_nav">
-      <ul class="main_menu">
+<div class="container">
+  <div>
+    <ul class="topnav">
+        <li><a id="logo-nav" href="#home">In silico</a></li>
         <li><a href="/"><span>Home</span></a></li>
         <li><a href="/contests/new"><span>New Contest</span></a></li>
         <li><a href="/contests"><span>Contests</span></a></li>
         <li><a href="/problems"><span>Problems list</span></a></li>
         <li><a href="/problems/new"><span>New Problem</span><a/></li>
         <li><a href="/"><span>Education</span></a></li>
+      <ul class="topnav right">
         <li><a href="/users/new"><span>Register</span></a></li>
         <li><a href="/users"><span>Users list</span></a></li>
         <li><a href="#" class "drop" onclick="display()">↑↓</a></li>
+        <div id="options">
+          <h3>HOLA</h3>
+        </div>
       </ul>
-    </nav>
-</div>
-<div id="options"><h3>Testing</h3></div>
-<div id='container'></div>
-<h1>STH</h1>
+    </ul>
+  </div>
 
-<div class="row">
-  <div class="col-5" id='container'></div>
-</div>
+  <div id="options"><h3>Testing</h3></div>
+
+  <div class="row">
+    <div class="col-12 content" id='container'></div>
+  </div>
 <% include footer %>
