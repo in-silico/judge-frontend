@@ -29,8 +29,8 @@ module.exports = React.createClass({
       console.log('Oh no! error');
     else
       this.setState({contests: res.body});
-
   },
+
   componentDidMount: function () {
     utils.getResourceFromServer(this.props.url, 'contests', this.onGetContests);
   },

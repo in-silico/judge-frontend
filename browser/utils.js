@@ -7,6 +7,7 @@ module.exports = {
   getResourceFromServer: function(url, resource, callback){
     superagent
       .get(url + resource)
+      .withCredentials()
       .set('Accept', 'application/json')
       .end(callback);
   },
@@ -15,6 +16,7 @@ module.exports = {
   postToServer: function (url, resource, data, callback) {
     superagent
       .post(url + resource)
+      .withCredentials()
       .send(data)
       .set('Accept', 'application/json')
       .end(callback);

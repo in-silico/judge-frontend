@@ -7,11 +7,11 @@ module.exports = function(app, mountPoint) {
   });
 
   router.get('/', function(req, res) {
-    res.render('index', {title : "UTPJudge"});
+    res.render('index', {title : "UTPJudge", user: req.user});
   });
 
   router.get('/new', function(req, res) {
-    res.render('index', {title : "UTPJudge"});
+    res.render('index', {title : "UTPJudge", user: req.user});
   });
 
   app.use(mountPoint, router);
