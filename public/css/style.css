@@ -1,7 +1,6 @@
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   margin: 0;
-  background-color: #BDC3C7;
 }
 
 #logo-nav {
@@ -86,11 +85,11 @@ ul.topnav ul.right {
   font-weight: normal;
   font-style: normal;
 }
-#options {
+.sidebar {
   top: 54px;
   right: 0%;
   display: none;
-  background: white;
+  background-color: #BDC3C7;
   padding: 8px 8px 10px 10px;
 }
 
