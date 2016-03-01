@@ -1,12 +1,8 @@
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  margin: 0;  
+  margin: 0;
 }
 
-.container {
-  max-width: 1024px;
-  margin: 10px auto;
-}
 #logo-nav {
   font-size: 25px;
   font-weight: bold;
@@ -25,13 +21,12 @@ ul.topnav li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 15px;
     text-decoration: none;
 }
 
 ul.topnav li a:hover:not(.active) {
   color: #48c9b0;
-  vertical-align:middle;
   font-weight: bold;
 }
 
@@ -78,6 +73,7 @@ ul.topnav ul.right {
 .col-12 {width: 100%;}
 
 .first-row {margin-top: 50px;}
+
 @font-face {
   font-family: 'FontAwesome';
   src: url('../img/fontawesome-webfont.eot?v=4.5.0');
@@ -89,13 +85,11 @@ ul.topnav ul.right {
   font-weight: normal;
   font-style: normal;
 }
-#options {
-  position: fixed;
+.sidebar {
   top: 54px;
   right: 0%;
   display: none;
-  width: 20%;
-  background: white;
+  background-color: #BDC3C7;
   padding: 8px 8px 10px 10px;
 }
 
@@ -137,16 +131,6 @@ a {
 
 .container_nav ul li {
   display: inline-block;
-}
-
-#options {
-  position: fixed;
-  top: 54px;
-  right: 0%;
-  display: none;
-  width: 20%;
-  background: white;
-  padding: 8px 8px 10px 10px;
 }
 
 .contestForm table{

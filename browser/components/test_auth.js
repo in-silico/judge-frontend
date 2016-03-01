@@ -21,12 +21,12 @@ module.exports = React.createClass({
   render: function () {
     var auth;
     if (this.state.user) {
-      auth = 'Hello ' + this.state.user.login + ' !';
+      auth = <p>{'Hello ' + this.state.user.login + ' !'}</p>;
     } else {
       auth =  <a href="/login"> login </a>;
     }
     return (
-      <div className='contestList'>
+      <div className='Auth'>
         {auth}
       </div>
     );

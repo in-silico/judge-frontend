@@ -88,11 +88,11 @@ page('/submissions', function () {
   );
 });
 
-page('/', function() {
-  ReactDOM.render(
-    <TestAuth url={window.backendAddress} />,
-    document.getElementById('testAuth')
-  );
-});
+
+ReactDOM.render(
+  <TestAuth url={window.backendAddress} />,
+  document.getElementById('testAuth')
+);
+
 
 page({ dispatch: true});
