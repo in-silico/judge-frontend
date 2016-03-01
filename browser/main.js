@@ -32,6 +32,17 @@ page('/contests/:id', function (ctx) {
   );
 });
 
+page('/contests/:cid/:id', function (ctx) {
+  ReactDOM.render(
+    <Problem
+      url={window.backendAddress}
+      id={ctx.params.id}
+      cid={ctx.params.cid}
+    />,
+    document.getElementById('container')
+  );
+});
+
 page('/contests', function () {
   ReactDOM.render(
     <ContestList url={window.backendAddress} />,

@@ -38,7 +38,7 @@ module.exports = React.createClass({
     if (err){
       console.log('Oh no!, error');
     } else {
-      var parsedJSON = JSON.parse(res.text);
+      var parsedJSON = res.body;
       console.log(JSON.stringify(parsedJSON.problems));
       this.setState({
         title: parsedJSON.title,
