@@ -5,7 +5,7 @@ var utils = require('../utils');
 
 var TestCaseForm = React.createClass({
   getInitialState: function () {
-    return {testCases: ''};
+    return {testCases: []};
   },
   handleFileChange: function (e) {
     this.setState({testCases: e.target.files});
@@ -13,25 +13,29 @@ var TestCaseForm = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
     var file = this.state.testCases;
-    console.log(file);
     var data = new FormData();
-    for(var key in file){
-      if(file.hasOwnProperty(key) && file[key] instanceof File){
-        console.log("to lol " + file[key]);
+    for (var key in file) {
+      if (file.hasOwnProperty(key) && file[key] instanceof File) {
         data.append(key, file[key]);
       }
     }
+
     if (!data)
       return;
-    utils.postToServer(this.props.url, 'problems/tc/' + this.props.id,
-      this.onDataSubmit);
+
+    utils.postToServer(this.props.url,
+        'problems/tc/' + this.props.id,
+        data,
+        this.onDataSubmit);
   },
+
   onDataSubmit: function (err, res) {
     if (err)
       console.log('Oh no! error');
     else
-      console.log(res.text);    
+      console.log(res.body);
   },
+
   render: function () {
     return (
       <div className='testCaseForm' onSubmit={this.handleSubmit}>
