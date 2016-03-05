@@ -1,6 +1,12 @@
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
+  background-color: #9FAEB0;
   margin: 0;
+}
+
+.container{
+  max-width: 1024px;
+  margin: 10px auto;
 }
 
 #logo-nav {
@@ -12,7 +18,7 @@ ul.topnav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #2f4154;
+    background-color: #2f4154;    
 }
 
 ul.topnav li {float: left;}
@@ -106,18 +112,19 @@ ul.topnav ul.right {
 }
 
 .footer {
-  background-color: #336666;
+  background-color: #2B3B4C;
   padding: 10px;
 }
 
 .footer-copyright {
-  background-color: #339999;
+  background-color: #394F66;
   padding: 10px;
 }
 
 .content {
   background-color: #fff;
   margin: 10px 0;
+  border-radius: 10px;
 }
 
 .center {
@@ -144,4 +151,16 @@ a {
 
 .problemList table {
   width: 100%;
+}
+
+.border{
+  border-radius: 10px 0;
+}
+
+.border-up{
+  border-radius: 10px 10px 0 0;
+}
+
+.border-down{
+  border-radius: 0 0 10px 10px ;
 }
