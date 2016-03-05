@@ -24,7 +24,7 @@ var TestCaseForm = React.createClass({
       return;
 
     utils.postToServer(this.props.url,
-        'problems/tc/' + this.props.id,
+        'problems/' + this.props.id + '/tc',
         data,
         this.onDataSubmit);
   },
