@@ -93,20 +93,26 @@ module.exports = React.createClass({
       );
     }.bind(this));
     return (
-      <div className='contestForm' onSubmit={this.handleSubmit}>
+      <div className='contestForm center' onSubmit={this.handleSubmit}>
         <form>
-          <input
-            type='text'
-            placeholder='Contest Title'
-            value={this.state.title}
-            onChange={this.handleTitleChange}>
-          </input><br />
-          <textarea
-            cols='60' rows='60'
-            placeholder='Contest Description'
-            value={this.state.description}
-            onChange={this.handleDescriptionChange}>
-          </textarea><br />
+          <div className='row'>
+            <input
+              type='text'
+              placeholder='Contest Title'
+              value={this.state.title}
+              className='textbox width-box'
+              onChange={this.handleTitleChange}>
+            </input><br /><br />
+          </div>
+          <div className="row">
+            <textarea
+              cols='60' rows='60'
+              placeholder='Contest Description'
+              value={this.state.description}
+              className='textbox width-box'
+              onChange={this.handleDescriptionChange}>
+            </textarea><br />
+          </div>
           <table>
             <tbody>
               {allProblems}

@@ -59,47 +59,74 @@ module.exports = React.createClass({
     return (
       <div className='userForm' onSubmit={this.handleSubmit}>
         <form>
-          <label htmlFor='name'>Full Name  </label>
-          <input
-            type='input'
-            name='name'
-            value={this.state.name}
-            id='name'
-            onChange={this.handleNameChange}>
-          </input><br/><br/>
-          <label htmlFor='username'>Username  </label>
-          <input
-            type='input'
-            name='username'
-            value={this.state.username}
-            id='username'
-            onChange={this.handleUsernameChange}>
-          </input><br/><br/>
-          <label htmlFor='email'>Email  </label>
-          <input
-            type='input'
-            name='email'
-            value={this.state.email}
-            id='email'
-            onChange={this.handleEmailChange}>
-          </input><br/><br/>
-          <label htmlFor='pwd'>Password  </label>
-          <input
-            type='password'
-            name='pwd'
-            value={this.state.password}
-            id='pwd'
-            onChange={this.handlePasswordChange}>
-            </input><br/><br/>
-            <label htmlFor='cpwd'>Confirm Password  </label>
-            <input
-              type='password'
-              name='cpwd'
-              value={this.state.cpassword}
-              id='cpwd'
-              onChange={this.handleConfirmPasswordChange}>
-            </input><br/><br/>
+          <div className='row'>
+            <div className='col-4 right'><label htmlFor='name'>Full Name  </label></div>
+            <div className='col-8'>
+              <input 
+                type='input'
+                name='name'
+                value={this.state.name}
+                id='name'
+                className='textbox'
+                onChange={this.handleNameChange}>
+              </input><br/><br/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-4 right'><label htmlFor='username'>Username  </label></div>
+            <div className='col-8'>
+              <input
+                type='input'
+                name='username'
+                value={this.state.username}
+                id='username'
+                className='textbox'
+                onChange={this.handleUsernameChange}>
+              </input><br/><br/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-4 right'><label htmlFor='email'>Email  </label></div>
+            <div className='col-8'>
+              <input
+                type='input'
+                name='email'
+                value={this.state.email}
+                id='email'
+                className='textbox'
+                onChange={this.handleEmailChange}>
+              </input><br/><br/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-4 right'><label htmlFor='pwd'>Password  </label></div>
+            <div className='col-8'>
+              <input
+                type='password'
+                name='pwd'
+                value={this.state.password}
+                id='pwd'
+                className='textbox'
+                onChange={this.handlePasswordChange}>
+              </input><br/><br/>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-4 right'><label htmlFor='cpwd'>Confirm Password  </label></div>
+            <div className='col-8'>
+              <input
+                type='password'
+                name='cpwd'
+                value={this.state.cpassword}
+                id='cpwd'
+                className='textbox'
+                onChange={this.handleConfirmPasswordChange}>
+              </input><br/><br/>
+            </div>
+          </div>  
+          <div className="row center">  
             <input type='submit' value = 'Register'/>
+          </div>
         </form>
       </div>
     );
