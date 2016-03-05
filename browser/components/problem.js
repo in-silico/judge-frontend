@@ -44,7 +44,7 @@ var TestCaseForm = React.createClass({
             type='file'
             placeholder='File'
             id = 'testCases'
-            onChange={this.handleFileChange}>
+            onChange={this.handleFileChange} multiple>
           </input>
           <input type='Submit' value='Add Test Case'></input>
         </form>
