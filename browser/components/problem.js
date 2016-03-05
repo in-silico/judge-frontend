@@ -24,9 +24,11 @@ var TestCaseForm = React.createClass({
       return;
 
     utils.postToServer(this.props.url,
-        'problems/tc/' + this.props.id,
+        'problems/' + this.props.id + '/tc',
         data,
         this.onDataSubmit);
+
+    document.querySelector("#tcForm").reset();
   },
 
   onDataSubmit: function (err, res) {
@@ -39,12 +41,12 @@ var TestCaseForm = React.createClass({
   render: function () {
     return (
       <div className='testCaseForm' onSubmit={this.handleSubmit}>
-        <form encType='multipart/form-data'>
+        <form id='tcForm' encType='multipart/form-data'>
           <input
             type='file'
             placeholder='File'
             id = 'testCases'
-            onChange={this.handleFileChange}>
+            onChange={this.handleFileChange} multiple>
           </input>
           <input type='Submit' value='Add Test Case'></input>
         </form>

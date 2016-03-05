@@ -9,7 +9,6 @@ var ProblemForm = require('./components/problem_form.js');
 var ProblemList = require('./components/problem_list.js');
 var Users = require('./components/users.js');
 var Register = require('./components/user_form.js');
-var Problems = require('./components/problems.js');
 var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');

@@ -89,7 +89,7 @@ module.exports = React.createClass({
     console.log(contestToAddTo);
     if (!contestToAddTo || !problemsToAdd)
       return;
-    var resource = 'contests/add/' + contestToAddTo;
+    var resource = 'contests/' + contestToAddTo + '/add';
     utils.postToServer(this.props.url, resource, problemsToAdd,
       this.addProblemsToContest);
     this.setState({selProblems: [], selContest: ''});
