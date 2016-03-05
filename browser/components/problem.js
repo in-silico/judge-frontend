@@ -27,6 +27,8 @@ var TestCaseForm = React.createClass({
         'problems/' + this.props.id + '/tc',
         data,
         this.onDataSubmit);
+
+    document.querySelector("#tcForm").reset();
   },
 
   onDataSubmit: function (err, res) {
@@ -39,7 +41,7 @@ var TestCaseForm = React.createClass({
   render: function () {
     return (
       <div className='testCaseForm' onSubmit={this.handleSubmit}>
-        <form encType='multipart/form-data'>
+        <form id='tcForm' encType='multipart/form-data'>
           <input
             type='file'
             placeholder='File'
