@@ -69,7 +69,7 @@ module.exports = React.createClass({
           <h2>{this.state.title}</h2>
           <br />
           <h3>Description:</h3>
-          <p className='textbox'>{this.state.description}</p>
+          <p className='text-description'>{this.state.description}</p>
         </div>
         <h4>Problems</h4>
         <table>
