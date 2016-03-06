@@ -45,6 +45,10 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div className='problemForm' onSubmit={this.handleSubmit}>
+        <div className='row'>
+          <h1>Create New Problem</h1>
+        </div>
+        <br />
         <form>
           <div className='center'>
             <div className="row">
@@ -67,7 +71,7 @@ module.exports = React.createClass({
             </div>
             <div className="row">
               <textarea
-                cols='60' rows='60'
+                cols='60' rows='25'
                 placeholder='Problem Description'
                 value={this.state.description}
                 className='textbox width-box'

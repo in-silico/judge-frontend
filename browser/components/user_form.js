@@ -61,6 +61,7 @@ module.exports = React.createClass({
         <div className='row'>
           <h1>Register in UTPJudge</h1>
         </div>
+        <br />
         <form>
           <div className='row'>
             <div className='col-4 right'><label htmlFor='name'>Full Name  </label></div>

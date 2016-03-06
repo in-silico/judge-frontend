@@ -228,7 +228,7 @@ a {
 
 .textbox:focus{
   color: #2E3133;
-  border-color: #008CBA;
+  border: 1px solid #008CBA;
 }
 
 .width-box {
