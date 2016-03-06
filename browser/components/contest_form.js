@@ -93,33 +93,54 @@ module.exports = React.createClass({
       );
     }.bind(this));
     return (
-      <div className='contestForm center' onSubmit={this.handleSubmit}>
+      <div className='contestForm' onSubmit={this.handleSubmit}>
+        <div className='row'>
+          <h1>Create New Contest</h1>
+        </div>
+        <br />
         <form>
-          <div className='row'>
-            <input
-              type='text'
-              placeholder='Contest Title'
-              value={this.state.title}
-              className='textbox width-box'
-              onChange={this.handleTitleChange}>
-            </input><br /><br />
+          <div className='center'>
+            <div className='row'>
+              <input
+                type='text'
+                placeholder='Contest Title'
+                value={this.state.title}
+                className='textbox width-box'
+                onChange={this.handleTitleChange}>
+              </input><br /><br />
+            </div>
+            <div className="row">
+              <textarea
+                cols='60' rows='25'
+                placeholder='Contest Description'
+                value={this.state.description}
+                className='textbox width-box'
+                onChange={this.handleDescriptionChange}>
+              </textarea><br />
+            </div>
           </div>
-          <div className="row">
-            <textarea
-              cols='60' rows='60'
-              placeholder='Contest Description'
-              value={this.state.description}
-              className='textbox width-box'
-              onChange={this.handleDescriptionChange}>
-            </textarea><br />
-          </div>
-          <table>
-            <tbody>
-              {allProblems}
-            </tbody>
-          </table>
           <br />
-          <input type='submit' value = 'Add contest'/>
+          <div className='row'>
+            <h2>Problems</h2>
+          </div>
+          <div className='center'>
+            <table>
+              <thead>
+                <tr>
+                   <th><h3>Name</h3></th>
+                   <th><h3>Author</h3></th>
+                   <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {allProblems}
+              </tbody>
+            </table>
+          </div>
+          <br />
+          <div className='center'>
+            <button type='submit' className='button button-color' value = 'Add contest'>Add Contest</button>
+          </div>
         </form>
       </div>
     );

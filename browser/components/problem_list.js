@@ -32,11 +32,15 @@ var AddProblemsForm = React.createClass({
     return (
       <div className="addProblemsForm" onSubmit={this.handleSubmit}>
         <form>
-          <Dropdown
-            list={this.props.list}
-            dropdownChange={this.props.dropdownChange}>
-          </Dropdown>
-          <input type="submit" value="Add Problems"></input>
+          <br />
+          <h3>Contest</h3>
+          <div className='row center'>
+            <Dropdown
+              list={this.props.list}
+              dropdownChange={this.props.dropdownChange}>
+            </Dropdown>
+            <button type='submit' className='button button-color' value = 'Add Problems'>Add Problems</button>
+          </div>
         </form>
       </div>
     );
@@ -132,7 +136,13 @@ module.exports = React.createClass({
     }.bind(this));
     return (
       <div className="problemList">
-        <table>
+        <table className='center'>
+        <thead>
+          <tr>
+             <th><h3>Name</h3></th>
+             <th><h3>Description</h3></th>
+          </tr>
+        </thead>
           <tbody>
             {allProblems}
           </tbody>

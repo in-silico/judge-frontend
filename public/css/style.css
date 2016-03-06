@@ -61,7 +61,7 @@ ul.topnav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #2f4154;    
+    background-color: #2f4154;
 }
 
 ul.topnav li {float: left;}
@@ -105,7 +105,7 @@ ul.topnav ul.right {
 
 [class*="col-"] {
   float: left;
-  padding: 15px;
+  padding: 10px;
 }
 
 .col-1 {width: 8.33%;}
@@ -228,7 +228,7 @@ a {
 
 .textbox:focus{
   color: #2E3133;
-  border-color: #FBFFAD;
+  border: 1px solid #008CBA;
 }
 
 .width-box {
@@ -237,4 +237,30 @@ a {
 
 .right {
   padding-left:  70px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button-color {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button-color:hover {
+  background-color: #008CBA;
+  color: white;
 }

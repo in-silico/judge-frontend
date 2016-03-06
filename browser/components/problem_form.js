@@ -45,36 +45,42 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div className='problemForm' onSubmit={this.handleSubmit}>
+        <div className='row'>
+          <h1>Create New Problem</h1>
+        </div>
+        <br />
         <form>
-          <div className="row">
-            <input
-              type='text'
-              placeholder='Problem Title'
-              value={this.state.title}
-              className='textbox width-box'
-              onChange={this.handleTitleChange}>
-            </input><br /><br />
+          <div className='center'>
+            <div className="row">
+              <input
+                type='text'
+                placeholder='Problem Title'
+                value={this.state.title}
+                className='textbox width-box'
+                onChange={this.handleTitleChange}>
+              </input><br /><br />
+            </div>
+            <div className="row">
+              <input
+                type='text'
+                placeholder='Problem Author'
+                value={this.state.author}
+                className='textbox width-box'
+                onChange={this.handleAuthorChange}>
+              </input><br /><br />
+            </div>
+            <div className="row">
+              <textarea
+                cols='60' rows='25'
+                placeholder='Problem Description'
+                value={this.state.description}
+                className='textbox width-box'
+                onChange={this.handleDescriptionChange}>
+              </textarea><br /><br />
+            </div>
+            <br />
+            <button type='submit' className='button button-color' value = 'Add problem'>Add problem</button>
           </div>
-          <div className="row">
-            <input
-              type='text'
-              placeholder='Problem Author'
-              value={this.state.author}
-              className='textbox width-box'
-              onChange={this.handleAuthorChange}>
-            </input><br /><br />
-          </div>
-          <div className="row">
-            <textarea
-              cols='60' rows='60'
-              placeholder='Problem Description'
-              value={this.state.description}
-              className='textbox width-box'
-              onChange={this.handleDescriptionChange}>
-            </textarea><br /><br />
-          </div>
-          <br />
-          <input type='submit' value = 'Add problem'/>
         </form>
       </div>
     );
