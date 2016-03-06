@@ -41,15 +41,18 @@ var TestCaseForm = React.createClass({
   render: function () {
     return (
       <div className='testCaseForm' onSubmit={this.handleSubmit}>
-        <form id='tcForm' encType='multipart/form-data'>
-          <input
-            type='file'
-            placeholder='File'
-            id = 'testCases'
-            onChange={this.handleFileChange} multiple>
-          </input>
-          <input type='Submit' value='Add Test Case'></input>
-        </form>
+        <div className='row'><h3>Add Test Cases:</h3></div>
+        <div className='row center'>
+          <form id='tcForm' encType='multipart/form-data'>
+            <input
+              type='file'
+              placeholder='File'
+              id = 'testCases'
+              onChange={this.handleFileChange} multiple>
+            </input>
+            <button type='submit' className='button button-color' value = 'Add Test Case'>Add Test Case</button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -108,11 +111,17 @@ module.exports = React.createClass({
     return (
       <div className="Problem">
         <h1> {this.state.title} </h1>
-        <h3> {this.state.author} </h3>
+        <h3>Author: {this.state.author} </h3>
         {limits}
-        <div
-          dangerouslySetInnerHTML={utils.parseToHTML(this.state.description)}>
+        <br />
+        <div className='row'>
+          <h3>Description:</h3>
+          <div
+            className='textbox'
+            dangerouslySetInnerHTML={utils.parseToHTML(this.state.description)}>
+          </div>
         </div>
+        <br />
         <TestCaseForm
           url={this.props.url}
           id={this.props.id}>

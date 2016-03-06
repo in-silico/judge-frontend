@@ -136,17 +136,23 @@ module.exports = React.createClass({
     }.bind(this));
     return (
       <div className="problemList">
-        <table className='center'>
-        <thead>
-          <tr>
-             <th><h3>Name</h3></th>
-             <th><h3>Description</h3></th>
-          </tr>
-        </thead>
-          <tbody>
-            {allProblems}
-          </tbody>
-        </table>
+        <div className='row'>
+          <h1>Problems List</h1>
+        </div>
+        <br />
+        <div className='row'>
+          <table className='center'>
+          <thead>
+            <tr>
+               <th><h3>Name</h3></th>
+               <th><h3>Author</h3></th>
+            </tr>
+          </thead>
+            <tbody>
+              {allProblems}
+            </tbody>
+          </table>
+        </div>
         <AddProblemsForm
           list={this.state.contests}
           dropdownChange={this.dropdownChange}
