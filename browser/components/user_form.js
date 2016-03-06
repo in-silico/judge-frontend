@@ -64,7 +64,7 @@ module.exports = React.createClass({
         <br />
         <form>
           <div className='row'>
-            <div className='col-4 right'><label htmlFor='name'>Full Name  </label></div>
+            <div className='col-4 right'><label htmlFor='name'><i className='material-icons'>face</i>  Full Name  </label></div>
             <div className='col-8'>
               <input
                 type='input'
@@ -77,7 +77,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className='row'>
-            <div className='col-4 right'><label htmlFor='username'>Username  </label></div>
+            <div className='col-4 right'><label htmlFor='username'><i className='material-icons'>perm_identity</i>  Username  </label></div>
             <div className='col-8'>
               <input
                 type='input'
@@ -90,7 +90,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className='row'>
-            <div className='col-4 right'><label htmlFor='email'>Email  </label></div>
+            <div className='col-4 right'><label htmlFor='email'><i className='material-icons'>mail_outline</i>  Email  </label></div>
             <div className='col-8'>
               <input
                 type='input'
@@ -103,7 +103,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className='row'>
-            <div className='col-4 right'><label htmlFor='pwd'>Password  </label></div>
+            <div className='col-4 right'><label htmlFor='pwd'><i className='material-icons'>lock_outline</i>  Password  </label></div>
             <div className='col-8'>
               <input
                 type='password'
@@ -116,7 +116,7 @@ module.exports = React.createClass({
             </div>
           </div>
           <div className='row'>
-            <div className='col-4 right'><label htmlFor='cpwd'>Confirm Password  </label></div>
+            <div className='col-4 right'><label htmlFor='cpwd'>Confirm Password</label></div>
             <div className='col-8'>
               <input
                 type='password'
