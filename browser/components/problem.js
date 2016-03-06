@@ -117,7 +117,7 @@ module.exports = React.createClass({
         <div className='row'>
           <h3>Description:</h3>
           <div
-            className='textbox'
+            className='text-description'
             dangerouslySetInnerHTML={utils.parseToHTML(this.state.description)}>
           </div>
         </div>
