@@ -58,11 +58,14 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className='userForm' onSubmit={this.handleSubmit}>
+        <div className='row'>
+          <h1>Register in UTPJudge</h1>
+        </div>
         <form>
           <div className='row'>
             <div className='col-4 right'><label htmlFor='name'>Full Name  </label></div>
             <div className='col-8'>
-              <input 
+              <input
                 type='input'
                 name='name'
                 value={this.state.name}
@@ -123,9 +126,9 @@ module.exports = React.createClass({
                 onChange={this.handleConfirmPasswordChange}>
               </input><br/><br/>
             </div>
-          </div>  
-          <div className="row center">  
-            <input type='submit' value = 'Register'/>
+          </div>
+          <div className="row center">
+            <button type='submit' className='button button-color' value = 'Register'>Register</button>
           </div>
         </form>
       </div>

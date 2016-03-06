@@ -113,13 +113,16 @@ module.exports = React.createClass({
               onChange={this.handleDescriptionChange}>
             </textarea><br />
           </div>
+          <div className='row'>
+            <h1>Problemas</h1>
+          </div>
           <table>
             <tbody>
               {allProblems}
             </tbody>
           </table>
           <br />
-          <input type='submit' value = 'Add contest'/>
+          <button type='submit' className='button button-color' value = 'Add contest'>Add Contest</button>
         </form>
       </div>
     );
