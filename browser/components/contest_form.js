@@ -127,9 +127,8 @@ module.exports = React.createClass({
             <table>
               <thead>
                 <tr>
-                   <th><h3>Name</h3></th>
-                   <th><h3>Author</h3></th>
-                   <th></th>
+                   <th><h3><i className='material-icons'>label_outline</i> Name</h3></th>
+                   <th><h3><i className='material-icons'>perm_identity</i> Author</h3></th>
                 </tr>
               </thead>
               <tbody>

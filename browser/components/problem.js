@@ -41,7 +41,7 @@ var TestCaseForm = React.createClass({
   render: function () {
     return (
       <div className='testCaseForm' onSubmit={this.handleSubmit}>
-        <div className='row'><h3>Add Test Cases:</h3></div>
+        <div className='row'><h3><i className='material-icons'>attachment</i>  Add Test Cases:</h3></div>
         <div className='row center'>
           <form id='tcForm' encType='multipart/form-data'>
             <input
