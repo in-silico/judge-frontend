@@ -167,6 +167,7 @@ ul.topnav ul.right {
 .content {
   background-color: #fff;
   margin: 10px 0;
+  padding: 10px;
   border-radius: 0 10px;
 }
 
@@ -183,16 +184,7 @@ a {
   display: inline-block;
 }
 
-.contestForm table{
-  width: 100%;
-}
-
-
-.contestList table {
-  width: 100%;
-}
-
-.problemList table {
+.contestForm table, .contestList table, .problemList table, .userList table {
   width: 100%;
 }
 
@@ -208,21 +200,25 @@ a {
   border-radius: 0 0 10px 0 ;
 }
 
+textarea {
+  resize: none
+}
+
 .textbox{
   border: 1px solid #DBE1EB;
   font-size: 15px;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   padding: 5px 5px 5px 5px;
-  width: 70%;
+  width: 100%;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
-  background: #FFFFFF;
-  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: #F7F9FA;
+  /*background: linear-gradient(left, #FFFFFF, #F7F9FA);
   background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
   background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
-  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);*/
   color: #2E3133;
 }
 
@@ -263,4 +259,17 @@ a {
 .button-color:hover {
   background-color: #008CBA;
   color: white;
+}
+
+/*Tables*/
+th {
+  background-color: #DBE1EB;
+  border-radius: 4px;
+  color: #fff;
+}
+
+td {
+  border: 1px solid #DBE1EB;
+  border-radius: 4px;
+  padding: 5px;
 }
