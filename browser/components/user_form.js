@@ -58,79 +58,55 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className='userForm' onSubmit={this.handleSubmit}>
-        <div className='row'>
-          <h1>Register in UTPJudge</h1>
-        </div>
+        <h1>Register in UTPJudge</h1>
         <br />
         <form>
-          <div className='row'>
-            <div className='col-4 right'><label htmlFor='name'><i className='material-icons'>face</i>  Full Name  </label></div>
-            <div className='col-8'>
-              <input
-                type='input'
-                name='name'
-                value={this.state.name}
-                id='name'
-                className='textbox'
-                onChange={this.handleNameChange}>
-              </input><br/><br/>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-4 right'><label htmlFor='username'><i className='material-icons'>perm_identity</i>  Username  </label></div>
-            <div className='col-8'>
-              <input
-                type='input'
-                name='username'
-                value={this.state.username}
-                id='username'
-                className='textbox'
-                onChange={this.handleUsernameChange}>
-              </input><br/><br/>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-4 right'><label htmlFor='email'><i className='material-icons'>mail_outline</i>  Email  </label></div>
-            <div className='col-8'>
-              <input
-                type='input'
-                name='email'
-                value={this.state.email}
-                id='email'
-                className='textbox'
-                onChange={this.handleEmailChange}>
-              </input><br/><br/>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-4 right'><label htmlFor='pwd'><i className='material-icons'>lock_outline</i>  Password  </label></div>
-            <div className='col-8'>
-              <input
-                type='password'
-                name='pwd'
-                value={this.state.password}
-                id='pwd'
-                className='textbox'
-                onChange={this.handlePasswordChange}>
-              </input><br/><br/>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-4 right'><label htmlFor='cpwd'>Confirm Password</label></div>
-            <div className='col-8'>
-              <input
-                type='password'
-                name='cpwd'
-                value={this.state.cpassword}
-                id='cpwd'
-                className='textbox'
-                onChange={this.handleConfirmPasswordChange}>
-              </input><br/><br/>
-            </div>
-          </div>
-          <div className="row center">
-            <button type='submit' className='button button-color' value = 'Register'>Register</button>
-          </div>
+          <label htmlFor='name'><i className='material-icons'>face</i>  Full Name</label>
+          <input
+            type='input'
+            name='name'
+            value={this.state.name}
+            id='name'
+            onChange={this.handleNameChange}>
+          </input><br/><br/>
+
+          <label htmlFor='username'><i className='material-icons'>perm_identity</i>  Username  </label>
+          <input
+            type='input'
+            name='username'
+            value={this.state.username}
+            id='username'
+            onChange={this.handleUsernameChange}>
+          </input><br/><br/>
+
+          <label htmlFor='email'><i className='material-icons'>mail_outline</i>  Email  </label>
+          <input
+            type='input'
+            name='email'
+            value={this.state.email}
+            id='email'
+            onChange={this.handleEmailChange}>
+          </input><br/><br/>
+
+          <label htmlFor='pwd'><i className='material-icons'>lock_outline</i>  Password  </label>
+          <input
+            type='password'
+            name='pwd'
+            value={this.state.password}
+            id='pwd'
+            onChange={this.handlePasswordChange}>
+          </input><br/><br/>
+
+          <label htmlFor='cpwd'>Confirm Password</label>
+          <input
+            type='password'
+            name='cpwd'
+            value={this.state.cpassword}
+            id='cpwd'
+            onChange={this.handleConfirmPasswordChange}>
+          </input><br/><br/>
+
+          <button type='submit' value = 'Register'>Register</button>
         </form>
       </div>
     );
