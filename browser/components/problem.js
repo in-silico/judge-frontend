@@ -2,6 +2,7 @@ var React = require('react');
 var katex = require('katex');
 var marked = require('marked');
 var utils = require('../utils');
+var SubmissionForm = require('./submission_form.js');
 
 var TestCaseForm = React.createClass({
   getInitialState: function () {
@@ -99,15 +100,25 @@ module.exports = React.createClass({
 
   render: function () {
     var limits;
-    if (this.props.cid)
+    var submission;
+    if (this.props.cid){
       limits = (
         <ul>
           <li>{'Memory Limit: ' + this.state.memLimit}</li>
           <li>{'Time Limit: ' + this.state.timeLimit}</li>
         </ul>
       );
-    else
+      submission = (
+        <SubmissionForm
+          contest_id={this.props.cid}
+          problem_id={this.props.id}
+          url={this.props.url}>
+        </SubmissionForm>
+      );
+    } else {
       limits = <ul></ul>;
+      submission = <div></div>;
+    }
     return (
       <div className="Problem">
         <h1> {this.state.title} </h1>
@@ -122,10 +133,15 @@ module.exports = React.createClass({
           </div>
         </div>
         <br />
-        <TestCaseForm
-          url={this.props.url}
-          id={this.props.id}>
-        </TestCaseForm>
+        <div>
+          <TestCaseForm
+            url={this.props.url}
+            id={this.props.id}>
+          </TestCaseForm>
+        </div>
+        <div>
+          {submission}
+        </div>
       </div>
     );
   }
