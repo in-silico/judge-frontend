@@ -138,7 +138,7 @@ module.exports = React.createClass({
           </div>
           <br />
           <div className='center'>
-            <button type='submit' className='button button-color' value = 'Add contest'>Add Contest</button>
+            <button type='submit' value = 'Add contest'>Add Contest</button>
           </div>
         </form>
       </div>
