@@ -47,22 +47,18 @@ module.exports = React.createClass({
     });
     return (
       <div className='contestList'>
-        <div className='row'>
-          <h1>Contest List</h1>
-        </div>
-        <div className='row center'>
-          <table>
+        <h1>Contest List</h1>
+        <table>
           <thead>
             <tr>
                <th><h3>Name</h3></th>
                <th><h3>Description</h3></th>
             </tr>
           </thead>
-            <tbody>
-              {allContests}
-            </tbody>
-          </table>
-        </div>
+          <tbody>
+            {allContests}
+          </tbody>
+        </table>
       </div>
     );
   }

@@ -101,14 +101,12 @@ module.exports = React.createClass({
             type='text'
             placeholder='Contest Title'
             value={this.state.title}
-            className='textbox width-box'
             onChange={this.handleTitleChange}>
           </input><br /><br />
           <textarea
             cols='60' rows='25'
             placeholder='Contest Description'
-            value={this.state.description}
-            className='textbox width-box'
+            value={this.state.description}           
             onChange={this.handleDescriptionChange}>
           </textarea><br /><br />
           <h2>Problems</h2>
