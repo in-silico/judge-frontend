@@ -34,13 +34,11 @@ var AddProblemsForm = React.createClass({
         <form>
           <br />
           <h3>Contest</h3>
-          <div className='row center'>
-            <Dropdown
-              list={this.props.list}
-              dropdownChange={this.props.dropdownChange}>
-            </Dropdown>
-            <button type='submit' className='button button-color' value = 'Add Problems'>Add Problems</button>
-          </div>
+          <Dropdown
+            list={this.props.list}
+            dropdownChange={this.props.dropdownChange}>
+          </Dropdown>
+          <button type='submit' className='button button-color' value = 'Add Problems'>Add Problems</button>
         </form>
       </div>
     );

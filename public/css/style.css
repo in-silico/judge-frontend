@@ -1,3 +1,5 @@
+/*UTPJudge*/
+
 @font-face {
   font-family:Lato;
   font-style:normal;
@@ -48,11 +50,11 @@ body {
 }
 
 .container{
-  max-width: 1024px;
+  width: 90%;
   margin: 10px auto;
 }
 
-#logo-nav {
+#logo-nav, #logo-nav-responsive {
   font-size: 25px;
   font-weight: bold;
   border-bottom: 0;
@@ -205,6 +207,7 @@ a {
 }
 
 textarea {
+  width: 100%;
   resize: none
 }
 
@@ -248,26 +251,39 @@ td {
   width: 30%;
 }
 
-.userForm form input {
+.userForm form input,
+.contestForm form input,
+.contestForm form textarea,
+.problemForm form input,
+.problemForm form textarea {
   border: 2px solid #DBE1EB;
   font-size: 15px;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   padding: 5px;
-  width: 70%;
+  /*width: 70%;*/
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  transition-duration: 0.5s;
   background: #F7F9FA;
   color: #2E3133;
 }
 
-.userForm form input:focus {
+.userForm form input:focus,
+.contestForm form input:focus,
+.contestForm form textarea:focus,
+.problemForm form input:focus,
+.problemForm form textarea:focus {
   color: #2E3133;
   border: 2px solid #48c9b0;
+  outline:0px;
 }
 
-.userForm form button {
+.userForm form button,
+.contestForm form button,
+.addProblemsForm form button,
+.problemForm form button {
   background-color: white;
   color: black;
   border: 2px solid #008CBA;
@@ -283,7 +299,76 @@ td {
   cursor: pointer;
 }
 
-.userForm form button:hover {
+.userForm form button:hover,
+.contestForm form button:hover,
+.addProblemsForm form button:hover,
+.problemForm form button:hover {
   background-color: #008CBA;
   color: white;
+}
+
+
+/*Medias*/
+
+ul li a:hover + .hidden, .hidden:hover {
+	display: block;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+.show-menu {
+  text-decoration: none;
+  color: #fff;
+  background: #2f4154;
+  text-align: center;
+  padding: 10px 0;
+  display:none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+
+/*Responsive Styles*/
+
+@media (max-width : 420px){
+  .container {
+    width: 95%;
+  }
+
+	ul {
+		position: static;
+		display: none;
+	}
+	/*Create vertical spacing*/
+	li {
+		margin-bottom: 1px;
+	}
+	/*Make all menu links full width*/
+	ul li, li a, input {
+		width: 100%;
+	}
+	/*Display 'show menu' link*/
+	.show-menu {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 15px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    border-radius: 0 10px 0 10px;
+	}
+
+  #logo-nav {
+		display: none;
+	}
+
+  #logo-nav-responsive {
+    color: white;
+  }
 }

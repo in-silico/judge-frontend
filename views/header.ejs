@@ -14,19 +14,20 @@
     <div class="container">
       <div class="nav-bar ">
         <nav class="container_nav">
-            <ul class="topnav border">
-              <li><a id="logo-nav" href="/">In silico</a></li>
-              <li><a href="/contests/new"><span>New Contest</span></a></li>
-              <li><a href="/contests"><span>Contests</span></a></li>
-              <li><a href="/problems"><span>Problems list</span></a></li>
-              <li><a href="/problems/new"><span>New Problem</span></a></li>
-              <li><a href="/"><span>Educations</span></a></li>
-              <li><a href="/users"><span>Users list</span></a></li>
-              <ul class="topnav right">
-                <li><a href="/users/new"><span>Register</span></a></li>
-                <li><a href="#" class "drop" onclick="display()">↑↓</a></li>
-              </ul>
+          <label for="show-menu" class="show-menu"><a id="logo-nav-responsive">In silico</a></label>
+        	<input type="checkbox" id="show-menu" role="button">
+          <ul class="topnav border" id="menu">
+            <li><a id="logo-nav" href="/">In silico</a></li>
+            <li><a href="/contests/new"><span>New Contest</span></a></li>
+            <li><a href="/contests"><span>Contests</span></a></li>
+            <li><a href="/problems"><span>Problems list</span></a></li>
+            <li><a href="/problems/new"><span>New Problem</span></a></li>
+            <li><a href="/"><span>Educations</span></a></li>
+            <li><a href="/users"><span>Users list</span></a></li>
+            <ul class="topnav right">
+              <li><a href="/users/new"><span>Register</span></a></li>
+              <li><a href="#" class "drop" onclick="display()">↑↓</a></li>
             </ul>
-
-          </nav>
+          </ul>
+        </nav>
       </div>

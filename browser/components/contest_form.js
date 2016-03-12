@@ -94,36 +94,24 @@ module.exports = React.createClass({
     }.bind(this));
     return (
       <div className='contestForm' onSubmit={this.handleSubmit}>
-        <div className='row'>
-          <h1>Create New Contest</h1>
-        </div>
+        <h1>Create New Contest</h1>
         <br />
         <form>
-          <div className='center'>
-            <div className='row'>
-              <input
-                type='text'
-                placeholder='Contest Title'
-                value={this.state.title}
-                className='textbox width-box'
-                onChange={this.handleTitleChange}>
-              </input><br /><br />
-            </div>
-            <div className="row">
-              <textarea
-                cols='60' rows='25'
-                placeholder='Contest Description'
-                value={this.state.description}
-                className='textbox width-box'
-                onChange={this.handleDescriptionChange}>
-              </textarea><br />
-            </div>
-          </div>
-          <br />
-          <div className='row'>
-            <h2>Problems</h2>
-          </div>
-          <div className='center'>
+          <input
+            type='text'
+            placeholder='Contest Title'
+            value={this.state.title}
+            className='textbox width-box'
+            onChange={this.handleTitleChange}>
+          </input><br /><br />
+          <textarea
+            cols='60' rows='25'
+            placeholder='Contest Description'
+            value={this.state.description}
+            className='textbox width-box'
+            onChange={this.handleDescriptionChange}>
+          </textarea><br /><br />
+          <h2>Problems</h2>
             <table>
               <thead>
                 <tr>
@@ -135,11 +123,8 @@ module.exports = React.createClass({
                 {allProblems}
               </tbody>
             </table>
-          </div>
           <br />
-          <div className='center'>
-            <button type='submit' value = 'Add contest'>Add Contest</button>
-          </div>
+          <button type='submit' value = 'Add contest'>Add Contest</button>
         </form>
       </div>
     );
