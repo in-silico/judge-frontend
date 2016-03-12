@@ -39,20 +39,16 @@ module.exports = React.createClass ({
 
     return (
       <div className='userList'>
-        <div className='row'>
-          <h1>Users List</h1>
-        </div>
+        <h1>Users List</h1>
         <br />
-        <div className='row center'>
-          <table>
-            <thead>
-              <th><h3>Username</h3></th>
-              <th><h3>Name</h3></th>
-              <th><h3>Email</h3></th>
-            </thead>
-            <tbody>{elements}</tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <th><h3>Username</h3></th>
+            <th><h3>Name</h3></th>
+            <th><h3>Email</h3></th>
+          </thead>
+          <tbody>{elements}</tbody>
+        </table>
       </div>
     );
   }

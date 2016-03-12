@@ -65,12 +65,10 @@ module.exports = React.createClass({
     }.bind(this));
     return(
       <div className='contestList'>
-        <div className='row'>
-          <h2>{this.state.title}</h2>
-          <br />
-          <h3>Description:</h3>
-          <p className='text-description'>{this.state.description}</p>
-        </div>
+        <h2>{this.state.title}</h2>
+        <br />
+        <h3>Description:</h3>
+        <p>{this.state.description}</p>        
         <h4>Problems</h4>
         <table>
           <thead>

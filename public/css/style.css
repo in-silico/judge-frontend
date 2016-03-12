@@ -151,7 +151,7 @@ ul.topnav ul.right {
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiasedtextform;
   -moz-osx-font-smoothing: grayscale;
 }
 .fa-bars:before {
@@ -255,7 +255,9 @@ td {
 .contestForm form input,
 .contestForm form textarea,
 .problemForm form input,
-.problemForm form textarea {
+.problemForm form textarea,
+.contestList p,
+.contestList table {
   border: 2px solid #DBE1EB;
   font-size: 15px;
   font-family: "Lato", Helvetica, Arial, sans-serif;
