@@ -28,6 +28,7 @@
     "passport-github": "^1.1.0",
     "react": "~0.14.3",
     "react-dom": "~0.14.3",
+    "react-overlays": "0.6.0",
     "request": "^2.69.0",
     "serve-favicon": "~2.3.0",
     "superagent": "~1.7.2",
