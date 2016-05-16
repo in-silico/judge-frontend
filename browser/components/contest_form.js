@@ -19,6 +19,12 @@ var Problem = React.createClass({
 
 module.exports = React.createClass({
   //Initial State, Component mounting
+  propTypes: {
+    header: React.PropTypes.string.isRequired,
+    buttonText: React.PropTypes.string.isRequired,
+    url: React.PropTypes.string.isRequired,
+    submit: React.PropTypes.func.isRequired
+  },
   getInitialState: function () {
     return {title: '', description: '', problems: [], selProblems: []}
   },
@@ -45,21 +51,8 @@ module.exports = React.createClass({
     var problemArray = this.state.selProblems;
     if (!title || !description)
       return;
-    utils.postToServer(this.props.url, 'contests', {
-      title: title,
-      description: description,
-      problems: problemArray
-    }, this.onContestSubmit);
-    this.setState({title: '', description: '', selProblems: []});
-  },
-  //Submission
-  onContestSubmit: function (err, res) {
-    if (err || !res.ok) {
-      console.log('Oh no! error');
-    } else {
-      window.location.pathname='/contests';
-      console.log('yay got ' + JSON.stringify(res.body));
-    }
+    var data = {title: title, description: description, problems: problemArray};
+    this.props.submit(data);
   },
   //additional
   checkProblem: function (id) {
@@ -94,7 +87,7 @@ module.exports = React.createClass({
     }.bind(this));
     return (
       <div className='contestForm' onSubmit={this.handleSubmit}>
-        <h1>Create New Contest</h1>
+        <h1>{this.props.header}</h1>
         <br />
         <form>
           <input
@@ -122,7 +115,7 @@ module.exports = React.createClass({
               </tbody>
             </table>
           <br />
-          <button type='submit' value = 'Add contest'>Add Contest</button>
+          <button type='submit' value={this.props.buttonText}>{this.props.buttonText}</button>
         </form>
       </div>
     );

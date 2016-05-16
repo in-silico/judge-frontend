@@ -3,6 +3,7 @@ var katex = require('katex');
 var marked = require('marked');
 var utils = require('../utils');
 var SubmissionForm = require('./submission_form.js');
+var ProblemEdit = require('./problem_edit.js');
 
 var TestCaseForm = React.createClass({
   getInitialState: function () {
@@ -43,7 +44,7 @@ var TestCaseForm = React.createClass({
     return (
       <div className='testCaseForm' onSubmit={this.handleSubmit}>
         <div className='row'><h3><i className='material-icons'>attachment</i>  Add Test Cases:</h3></div>
-        <div className='row center'>
+        <div className='row'>
           <form id='tcForm' encType='multipart/form-data'>
             <input
               type='file'
@@ -97,10 +98,14 @@ module.exports = React.createClass({
       utils.getResourceFromServer(this.props.url, 'contests/' + this.props.cid,
         this.onGetContest);
   },
-
+  update: function () {
+    utils.getResourceFromServer(this.props.url, 'problems/' + this.props.id,
+      this.onGetProblem);
+  },
   render: function () {
     var limits;
     var submission;
+    var edition;
     if (this.props.cid){
       limits = (
         <ul>
@@ -109,20 +114,30 @@ module.exports = React.createClass({
         </ul>
       );
       submission = (
-        <SubmissionForm
-          contest_id={this.props.cid}
-          problem_id={this.props.id}
-          url={this.props.url}>
-        </SubmissionForm>
+        <div>
+          <h3>Make Submission:</h3>
+          <SubmissionForm
+            contest_id={this.props.cid}
+            problem_id={this.props.id}
+            url={this.props.url}>
+          </SubmissionForm>
+        </div>
       );
+      edition = null;
     } else {
-      limits = <ul></ul>;
-      submission = <div></div>;
+      limits = null;
+      submission = null;
+      edition = <ProblemEdit
+        url={this.props.url}
+        id={this.props.id}
+        updateParent={this.update}
+      />;
     }
     return (
       <div className="Problem">
         <h1> {this.state.title} </h1>
         <h3>Author: {this.state.author} </h3>
+        {edition}
         {limits}
         <br />
         <div className='row'>
@@ -138,10 +153,8 @@ module.exports = React.createClass({
             url={this.props.url}
             id={this.props.id}>
           </TestCaseForm>
-        </div>
-        <div>
-          {submission}
-        </div>
+        </div><br/>
+        {submission}
       </div>
     );
   }

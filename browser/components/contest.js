@@ -71,8 +71,6 @@ module.exports = React.createClass({
       <div className='contestList'>
         <h2>{this.state.title}</h2>
         <ContestEdit
-          title={this.state.title}
-          description={this.state.description}
           url={this.props.url}
           id={this.state.id}
           updateParent={this.update}>
