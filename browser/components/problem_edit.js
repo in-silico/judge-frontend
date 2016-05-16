@@ -1,6 +1,6 @@
 var React = require('react');
 var Modal = require('react-overlays').Modal;
-var ContestForm = require('./contest_form.js');
+var ProblemForm = require('./problem_form.js');
 var utils = require('../utils.js');
 var style = require('../../config/styles.js');
 
@@ -13,7 +13,7 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {showModal: false};
   },
-  onEditContest: function (err, res) {
+  onEditProblem: function (err, res) {
     if (err)
       return alert('Oh No, error!');
     this.props.updateParent();
@@ -22,16 +22,16 @@ module.exports = React.createClass({
   },
   handleSubmit: function (data) {
     utils.putToServer(
-      this.props.url, 'contests/' + this.props.id,
+      this.props.url, 'problems/' + this.props.id,
       data,
-      this.onEditContest
+      this.onEditProblem
     );
   },
   render: function() {
     return (
-      <div className='contestEdit' onSubmit={this.handleSubmit}>
+      <div className='problemEdit' onSubmit={this.handleSubmit}>
         <button onClick={this.open}>
-          Edit Contest
+          Edit Problem
         </button>
         <Modal
           style={style.modal.modal}
@@ -40,9 +40,9 @@ module.exports = React.createClass({
           onHide={this.close}
         >
           <div style={style.modal.dialog} >
-            <ContestForm
+            <ProblemForm
               url={this.props.url}
-              header='Edit Contest'
+              header='Edit Problem'
               buttonText='Edit'
               submit={this.handleSubmit}
             />

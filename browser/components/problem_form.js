@@ -3,6 +3,11 @@ var superagent = require('superagent');
 var utils = require('../utils.js')
 
 module.exports = React.createClass({
+  propTypes: {
+    header: React.PropTypes.string.isRequired,
+    buttonText: React.PropTypes.string.isRequired,
+    submit: React.PropTypes.func.isRequired
+  },
   //Initial State, Component mounting
   getInitialState: function () {
     return {title: '', author:'', description: ''}
@@ -23,29 +28,14 @@ module.exports = React.createClass({
     var author = this.state.author.trim();
     var description = this.state.description.trim();
     //var problemArray = this.state.selProblems;
-    if (!title || !author || !description)
-      return;
-    utils.postToServer(this.props.url, 'problems', {
-      title: title,
-      author: author,
-      description: description
-    }, this.onProblemSubmit);
-
-    this.setState({title: '', author:'', description: ''});
-  },
-  //Submission
-  onProblemSubmit: function (err, res) {
-    if (err || !res.ok) {
-      console.log('Oh no! error');
-    } else {
-      window.location.pathname='/problems';
-      console.log('yay got ' + JSON.stringify(res.body));
-    }
+    if (!title || !author || !description) return;
+    var data = {title: title, author: author, description: description};
+    this.props.submit(data);
   },
   render: function () {
     return (
       <div className='problemForm' onSubmit={this.handleSubmit}>
-        <h1>Create New Problem</h1>
+        <h1>{this.props.header}</h1>
         <br />
         <form>
           <input
@@ -67,7 +57,7 @@ module.exports = React.createClass({
             onChange={this.handleDescriptionChange}>
           </textarea><br /><br />
           <br />
-          <button type='submit' className='button button-color' value = 'Add problem'>Add problem</button>
+          <button type='submit' className='button button-color' value={this.props.buttonText}>{this.props.buttonText}</button>
         </form>
       </div>
     );

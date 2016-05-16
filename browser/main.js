@@ -13,13 +13,37 @@ var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 var TestAuth = require('./components/test_auth.js');
+var utils = require('./utils.js');
 
 var config = require('../config/development.js');
 window.backendAddress = config.backend.url;
 
+function postContestRes (err, res) {
+  if (err) console.log('Oh no!');
+  else window.location.pathname = '/contests';
+}
+
+function postProblemRes (err, res) {
+  if (err) console.log('Oh no!');
+  else window.location.pathname = '/problems';
+}
+
+function sendContest (data) {
+  utils.postToServer(window.backendAddress, 'contests', data, postContestRes);
+}
+
+function sendProblem(data) {
+  utils.postToServer(window.backendAddress, 'problems', data, postProblemRes);
+}
+
 page('/contests/new', function() {
   ReactDOM.render(
-    <ContestForm url={window.backendAddress} />,
+    <ContestForm
+      header='Create Contest'
+      submit={sendContest}
+      buttonText='Add Contest'
+      url={window.backendAddress}
+    />,
     document.getElementById('container')
   );
 });
@@ -65,7 +89,11 @@ page("/users", function() {
 
 page('/problems/new', function () {
   ReactDOM.render(
-    <ProblemForm url={window.backendAddress} />,
+    <ProblemForm
+      header='Create Problem'
+      buttonText='Create'
+      submit={sendProblem} 
+    />,
     document.getElementById('container')
   );
 });
