@@ -317,7 +317,7 @@ ul li a:hover + .hidden, .hidden:hover {
 }
 
 /*Hide checkbox*/
-input[type=checkbox]{
+#show-menu {
     display: none;
 }
 

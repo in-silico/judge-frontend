@@ -11,7 +11,7 @@ var Problem = React.createClass({
         <td>{this.props.title}</td>
         <td>{this.props.author}</td>
         <td>Add<input type="checkbox"
-          onChange={this.handleCheck}></input></td>
+          onChange={this.handleCheck} /></td>
       </tr>
     );
   }
@@ -106,7 +106,7 @@ module.exports = React.createClass({
           <textarea
             cols='60' rows='25'
             placeholder='Contest Description'
-            value={this.state.description}           
+            value={this.state.description}
             onChange={this.handleDescriptionChange}>
           </textarea><br /><br />
           <h2>Problems</h2>
