@@ -22,6 +22,22 @@ module.exports = {
       .end(callback);
   },
 
+  putToServer: function(url, resource, data, callback) {
+    superagent
+      .put(url + resource)
+      .withCredentials()
+      .send(data)
+      .set('Accept', 'application/json')
+      .end(callback);
+  },
+
+  deleteResourceFromServer: function(url, resource, callback) {
+    superagent
+      .del(url + resource)
+      .withCredentials()
+      .end(callback);
+  },
+
   parseToHTML: function (unparsed) {
     var str =  unparsed;
     var list = str.split("$");

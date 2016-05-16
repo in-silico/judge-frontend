@@ -1,4 +1,5 @@
 var React = require('react');
+var ContestEdit = require('./contest_edit.js');
 var utils = require('../utils.js');
 
 var ContestProblem = React.createClass({
@@ -39,7 +40,6 @@ module.exports = React.createClass({
       console.log('Oh no!, error');
     } else {
       var parsedJSON = res.body;
-      console.log(JSON.stringify(parsedJSON.problems));
       this.setState({
         title: parsedJSON.title,
         description: parsedJSON.description,
@@ -49,6 +49,10 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function () {
+    utils.getResourceFromServer(this.props.url, 'contests/' + this.props.id,
+      this.onGetContest);
+  },
+  update: function (data) {
     utils.getResourceFromServer(this.props.url, 'contests/' + this.props.id,
       this.onGetContest);
   },
@@ -66,9 +70,16 @@ module.exports = React.createClass({
     return(
       <div className='contestList'>
         <h2>{this.state.title}</h2>
+        <ContestEdit
+          title={this.state.title}
+          description={this.state.description}
+          url={this.props.url}
+          id={this.state.id}
+          updateParent={this.update}>
+        </ContestEdit>
         <br />
         <h3>Description:</h3>
-        <p>{this.state.description}</p>        
+        <p>{this.state.description}</p>
         <h4>Problems</h4>
         <table>
           <thead>
