@@ -43,6 +43,18 @@
   src:url(../font/lato/lato-regular.eot?#iefix) format('embedded-opentype'),url(../font/lato/lato-regular.woff) format('woff'),url(../font/lato/lato-regular.ttf) format('truetype'),url(../font/lato/lato-regular.svg#latoregular) format('svg')
 }
 
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../img/fontawesome-webfont.eot?v=4.5.0');
+  src: url('../img/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),
+  url('../img/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),
+  url('../img/fontawesome-webfont.woff?v=4.5.0') format('woff'),
+  url('../img/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),
+  url('../img/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   background-color: #9FAEB0;
@@ -127,17 +139,6 @@ ul.topnav ul.right {
 
 .first-row {margin-top: 50px;}
 
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('../img/fontawesome-webfont.eot?v=4.5.0');
-  src: url('../img/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),
-  url('../img/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),
-  url('../img/fontawesome-webfont.woff?v=4.5.0') format('woff'),
-  url('../img/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),
-  url('../img/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 .sidebar {
   top: 54px;
   right: 0%;
@@ -257,8 +258,7 @@ td {
 .contestForm form textarea,
 .problemForm form input,
 .problemForm form textarea,
-.contestList p,
-.contestList table {
+.contestList p {
   border: 2px solid #DBE1EB;
   font-size: 15px;
   font-family: "Lato", Helvetica, Arial, sans-serif;
@@ -308,70 +308,4 @@ td {
 .problemForm form button:hover {
   background-color: #008CBA;
   color: white;
-}
-
-
-/*Medias*/
-
-ul li a:hover + .hidden, .hidden:hover {
-	display: block;
-}
-
-/*Hide checkbox*/
-#show-menu {
-    display: none;
-}
-
-.show-menu {
-  text-decoration: none;
-  color: #fff;
-  background: #2f4154;
-  text-align: center;
-  padding: 10px 0;
-  display:none;
-}
-
-/*Show menu when invisible checkbox is checked*/
-input[type=checkbox]:checked ~ #menu{
-    display: block;
-}
-
-
-/*Responsive Styles*/
-
-@media (max-width : 420px){
-  .container {
-    width: 95%;
-  }
-
-	ul {
-		position: static;
-		display: none;
-	}
-	/*Create vertical spacing*/
-	li {
-		margin-bottom: 1px;
-	}
-	/*Make all menu links full width*/
-	ul li, li a, input {
-		width: 100%;
-	}
-	/*Display 'show menu' link*/
-	.show-menu {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 15px;
-    text-decoration: none;
-    margin-bottom: 5px;
-    border-radius: 0 10px 0 10px;
-	}
-
-  #logo-nav {
-		display: none;
-	}
-
-  #logo-nav-responsive {
-    color: white;
-  }
 }
