@@ -55,6 +55,11 @@
   font-style: normal;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   background-color: #9FAEB0;
@@ -63,7 +68,9 @@ body {
 
 .container{
   width: 90%;
-  margin: 10px auto;
+  height: 100%;
+  margin: auto;
+  padding: 10px 0;
 }
 
 #logo-nav, #logo-nav-responsive {
@@ -102,11 +109,6 @@ ul.topnav li a.active {
 ul.topnav ul.right {
   float: right;
   list-style-type: none;
-}
-
-@media screen and (max-width: 600px){
-  ul.topnav ul.right,
-  ul.topnav li {float: none;}
 }
 
 * {
@@ -160,6 +162,7 @@ ul.topnav ul.right {
 }
 
 .footer {
+  bottom: 0;
   background-color: #2B3B4C;
   padding: 10px;
 }
@@ -167,9 +170,11 @@ ul.topnav ul.right {
 .footer-copyright {
   background-color: #394F66;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 .content {
+  min-height: calc(100% - 247px) !important;
   background-color: #fff;
   margin: 10px 0;
   padding: 10px;
