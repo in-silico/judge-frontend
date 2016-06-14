@@ -268,7 +268,6 @@ td {
   font-size: 15px;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   padding: 5px;
-  /*width: 70%;*/
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -291,16 +290,21 @@ td {
 .userForm form button,
 .contestForm form button,
 .addProblemsForm form button,
-.problemForm form button {
+.problemForm form button,
+.contestEdit button,
+.problemEdit button,
+.testCaseForm button,
+.dropdown select {
   background-color: white;
-  color: black;
+  color: #008CBA;
   border: 2px solid #008CBA;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
   margin: 4px 2px;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
@@ -310,7 +314,10 @@ td {
 .userForm form button:hover,
 .contestForm form button:hover,
 .addProblemsForm form button:hover,
-.problemForm form button:hover {
+.problemForm form button:hover,
+.contestEdit button:hover,
+.problemEdit button:hover,
+.testCaseForm button:hover {
   background-color: #008CBA;
   color: white;
 }
