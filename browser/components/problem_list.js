@@ -133,10 +133,10 @@ module.exports = React.createClass({
       );
     }.bind(this));
     return (
-      <div className="problemList">        
-        <h1>Problems List</h1>        
-        <br />        
-        <table className='center'>
+      <div className="problemList">
+        <h1>Problems List</h1>
+        <br />
+        <table>
         <thead>
           <tr>
              <th><h3>Name</h3></th>
@@ -146,7 +146,7 @@ module.exports = React.createClass({
           <tbody>
             {allProblems}
           </tbody>
-        </table>        
+        </table>
         <AddProblemsForm
           list={this.state.contests}
           dropdownChange={this.dropdownChange}

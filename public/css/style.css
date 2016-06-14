@@ -55,6 +55,11 @@
   font-style: normal;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   background-color: #9FAEB0;
@@ -63,6 +68,7 @@ body {
 
 .container{
   width: 90%;
+  height: 100%;
   margin: 10px auto;
 }
 
@@ -102,11 +108,6 @@ ul.topnav li a.active {
 ul.topnav ul.right {
   float: right;
   list-style-type: none;
-}
-
-@media screen and (max-width: 600px){
-  ul.topnav ul.right,
-  ul.topnav li {float: none;}
 }
 
 * {
@@ -170,6 +171,7 @@ ul.topnav ul.right {
 }
 
 .content {
+  min-height: 80% !important;
   background-color: #fff;
   margin: 10px 0;
   padding: 10px;
