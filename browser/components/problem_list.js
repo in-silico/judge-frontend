@@ -7,17 +7,26 @@ var Problem = React.createClass({
     this.props.problemCheck(this.props.id);
   },
   handleClick: function (e) {
-    if (e.button == 0)
+    if (e.button === 0) {
       window.location.pathname = 'problems/' + this.props.id;
+    }
   },
   render: function () {
     return (
-      <tr className="problem">
-        <td><a href={'/problems/' + this.props.id} onClick={this.handleClick}>{this.props.title}</ a></td>
-        <td>{this.props.author}</td>
-        <td>Add<input type="checkbox"
-          onChange={this.handleCheck}>
-        </input></td>
+      <tr className='problem'>
+        <td>
+          <a href={'/problems/' + this.props.id} onClick={this.handleClick}>
+            {this.props.title}
+          </a>
+        </td>
+        <td>
+          {this.props.author}
+        </td>
+        <td>
+          Add
+          <input type='checkbox' onChange={this.handleCheck}>
+          </input>
+        </td>
       </tr>
     );
   }
@@ -30,15 +39,16 @@ var AddProblemsForm = React.createClass({
   },
   render: function () {
     return (
-      <div className="addProblemsForm" onSubmit={this.handleSubmit}>
+      <div className='addProblemsForm' onSubmit={this.handleSubmit}>
         <form>
           <br />
           <h3>Contest</h3>
-          <Dropdown
-            list={this.props.list}
-            dropdownChange={this.props.dropdownChange}>
-          </Dropdown>
-          <button type='submit' className='button button-color' value = 'Add Problems'>Add Problems</button>
+          <Dropdown list={this.props.list}
+            dropdownChange={this.props.dropdownChange} />
+          <button type='submit' className='button button-color'
+            value='Add Problems'>
+            Add Problems
+          </button>
         </form>
       </div>
     );
@@ -46,26 +56,28 @@ var AddProblemsForm = React.createClass({
 });
 
 module.exports = React.createClass({
-  //Initial State and mounting
+  // Initial State and mounting
   getInitialState: function () {
-    return ({problems: [], contests:[], selProblems: [], selContest: ''});
+    return ({problems: [], contests: [], selProblems: [], selContest: ''});
   },
   onGetProblems: function (err, res) {
-    if(err)
+    if (err) {
       console.log('Oh no! error');
-    else
+    } else {
       this.setState({problems: res.body});
+    }
   },
   onGetContests: function (err, res) {
-    if(err){
+    if (err) {
       console.log('Oh no! error');
     } else {
       var parsedJSON = JSON.parse(res.text);
       var contestList = [];
       parsedJSON.forEach(function (item, index) {
         contestList.push({value: item._id, text: item.title});
-        if (index == 0)
+        if (index === 0) {
           this.setState({selContest: item._id});
+        }
       }.bind(this));
       console.log(JSON.stringify(contestList));
       this.setState({
@@ -82,15 +94,16 @@ module.exports = React.createClass({
       console.log('Oh no! error');
     } else {
       console.log('yay got ' + JSON.stringify(res.body));
-      window.location.pathname = '/contests'
+      window.location.pathname = '/contests';
     }
   },
   handleSubmit: function () {
     var problemsToAdd = this.state.selProblems;
     var contestToAddTo = this.state.selContest;
     console.log(contestToAddTo);
-    if (!contestToAddTo || !problemsToAdd)
+    if (!contestToAddTo || !problemsToAdd) {
       return;
+    }
     var resource = 'contests/' + contestToAddTo + '/add';
     utils.postToServer(this.props.url, resource, problemsToAdd,
       this.addProblemsToContest);
@@ -98,17 +111,17 @@ module.exports = React.createClass({
   },
   problemCheck: function (id) {
     var problemArray = this.state.selProblems;
-    var pr_index;
+    var prIndex = -1;
     var problem = problemArray.find(function (item, index) {
-      if(item.problem_id == id){
-        pr_index = index;
+      if (item.problem_id === id) {
+        prIndex = index;
         return item;
       }
     });
-    if (problem){
-      problemArray.splice(pr_index, 1);
+    if (problem) {
+      problemArray.splice(prIndex, 1);
       console.log(JSON.stringify(this.state.selProblems));
-    } else{
+    } else {
       problemArray.push({problem_id: id});
       this.setState({selProblems: problemArray});
       console.log(JSON.stringify(this.state.selProblems));
@@ -119,7 +132,6 @@ module.exports = React.createClass({
     this.setState({selContest: contest});
   },
   render: function () {
-
     var allProblems = this.state.problems.map(function (item) {
       return (
         <Problem
@@ -128,30 +140,31 @@ module.exports = React.createClass({
           description={item.description}
           key={item._id}
           id={item._id}
-          problemCheck={this.problemCheck}>
-        </Problem>
+          problemCheck={this.problemCheck} />
       );
     }.bind(this));
     return (
-      <div className="problemList">
+      <div className='problemList'>
         <h1>Problems List</h1>
         <br />
         <table>
-        <thead>
-          <tr>
-             <th><h3>Name</h3></th>
-             <th><h3>Author</h3></th>
-          </tr>
-        </thead>
+          <thead>
+            <tr>
+              <th>
+                <h3>Name</h3>
+              </th>
+              <th>
+                <h3>Author</h3>
+              </th>
+            </tr>
+          </thead>
           <tbody>
             {allProblems}
           </tbody>
         </table>
-        <AddProblemsForm
-          list={this.state.contests}
+        <AddProblemsForm list={this.state.contests}
           dropdownChange={this.dropdownChange}
-          handleSubmit={this.handleSubmit}>
-        </AddProblemsForm>
+          handleSubmit={this.handleSubmit} />
       </div>
     );
   }

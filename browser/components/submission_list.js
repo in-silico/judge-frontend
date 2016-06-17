@@ -6,16 +6,18 @@ var Submission = React.createClass({
     return ({problemTitle: '', contestTitle: ''});
   },
   onGetProblem: function (err, res) {
-    if (err)
+    if (err) {
       console.log('Oh no!, error');
-    else
+    } else {
       this.setState({problemTitle: res.body.title});
+    }
   },
   onGetContest: function (err, res) {
-    if (err)
+    if (err) {
       console.log('Oh no!, error');
-    else
+    } else {
       this.setState({contestTitle: res.body.title});
+    }
   },
   componentDidMount: function () {
     utils.getResourceFromServer(this.props.url, 'problems/' + this.props.pid,
@@ -24,11 +26,17 @@ var Submission = React.createClass({
       this.onGetContest);
   },
   render: function () {
-    return(
-      <tr className="submission">
-        <td>{this.state.contestTitle}</td>
-        <td>{this.state.problemTitle}</td>
-        <td>{this.props.status}</td>
+    return (
+      <tr className='submission'>
+        <td>
+          {this.state.contestTitle}
+        </td>
+        <td>
+          {this.state.problemTitle}
+        </td>
+        <td>
+          {this.props.status}
+        </td>
       </tr>
     );
   }
@@ -39,7 +47,7 @@ module.exports = React.createClass({
     return {submissions: []};
   },
   onGetSubmissions: function (err, res) {
-    if (err){
+    if (err) {
       console.log('Oh no!, error');
     } else {
       this.setState({submissions: JSON.parse(res.text)});
@@ -58,13 +66,12 @@ module.exports = React.createClass({
           cid={item.contest_id}
           status={item.status}
           url={this.props.url}
-          key={item._id}>
-        </Submission>
+          key={item._id} />
       );
     }.bind(this));
 
     return (
-      <div className="submissions">
+      <div className='submissions'>
         <table>
           <tbody>
             {allSubmissions}

@@ -1,14 +1,13 @@
 var React = require('react');
 var superagent = require('superagent');
 
-
 module.exports = React.createClass({
-  //Initial State, Component mounting
+  // Initial State, Component mounting
   getInitialState: function () {
-    return {user_id: '', source_code:''}
+    return {user_id: '', source_code: ''};
   },
 
-  //Handlers
+  // Handlers
   handleUserIdChange: function (e) {
     this.setState({user_id: e.target.value});
   },
@@ -19,31 +18,32 @@ module.exports = React.createClass({
 
   handleSubmit: function (e) {
     e.preventDefault();
-    var user_id = this.state.user_id.trim();
+    var userId = this.state.user_id.trim();
 
     var file = this.state.source_code;
     console.log(file);
-    var dataSourceCode = new FormData();
+    var dataSourceCode = new FormData(); // eslint-disable-line
 
-    for(var key in file){
-      if(file.hasOwnProperty(key) && file[key] instanceof File){
-        console.log("to asdasd " + file[key]);
+    for (var key in file) {
+      if (file.hasOwnProperty(key) &&
+          (file[key] instanceof File)) { // eslint-disable-line
         dataSourceCode.append(key, file[key]);
       }
     }
 
-    if (!user_id || !dataSourceCode)
+    if (!userId || !dataSourceCode) {
       return;
+    }
 
     dataSourceCode.append('problem_id', this.props.problem_id);
     dataSourceCode.append('contest_id', this.props.contest_id);
     dataSourceCode.append('user_id', this.props.user_id);
     this.onSubmissionSubmit(dataSourceCode);
 
-    this.setState({user_id: '', source_code:''});
+    this.setState({user_id: '', source_code: ''});
   },
 
-  //Submission
+  // Submission
   onSubmissionSubmit: function (submission) {
     console.log(JSON.stringify(submission));
     console.log(this.props.url);
@@ -52,19 +52,18 @@ module.exports = React.createClass({
       .post(this.props.url + 'submissions')
       .send(submission)
       .set('Accept', 'application/json')
-      .end(function(err, res){
+      .end(function (err, res) {
         if (err || !res.ok) {
           console.log('Oh no! error');
         } else {
-          //window.location.pathname='/problems';
-          //console.log('yay got ' + JSON.stringify(res.body));
+          // window.location.pathname='/problems';
+          // console.log('yay got ' + JSON.stringify(res.body));
         }
       });
   },
 
-  //The render
+  // The render
   render: function () {
-
     return (
       <div className='submissionForm' onSubmit={this.handleSubmit}>
         <form encType='multipart/form-data'>
@@ -77,11 +76,11 @@ module.exports = React.createClass({
           <input
             type='file'
             placeholder='File'
-            id = 'sourceCode'
+            id='sourceCode'
             onChange={this.handleSourceCodeChange}>
-          </input><br />
-
-          <input type='submit' value = 'Submit'/>
+          </input>
+          <br />
+          <input type='submit' value='Submit' />
         </form>
       </div>
     );

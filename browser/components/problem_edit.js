@@ -14,11 +14,12 @@ module.exports = React.createClass({
     return {showModal: false};
   },
   onEditProblem: function (err, res) {
-    if (err)
-      return alert('Oh No, error!');
+    if (err) {
+      return; // alert('Oh No, error!');
+    }
     this.props.updateParent();
     this.close();
-    alert('Contest Updated');
+    // alert('Contest Updated');
   },
   handleSubmit: function (data) {
     utils.putToServer(
@@ -27,7 +28,7 @@ module.exports = React.createClass({
       this.onEditProblem
     );
   },
-  render: function() {
+  render: function () {
     return (
       <div className='problemEdit' onSubmit={this.handleSubmit}>
         <button onClick={this.open}>
@@ -52,11 +53,11 @@ module.exports = React.createClass({
     );
   },
 
-  close(){
+  close () {
     this.setState({ showModal: false });
   },
 
-  open(){
+  open () {
     this.setState({ showModal: true });
   }
 });

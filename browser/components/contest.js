@@ -7,7 +7,7 @@ var ContestProblem = React.createClass({
     return ({title: '', author: ''});
   },
   onGetProblem: function (err, res) {
-    if (err){
+    if (err) {
       console.log('Oh no!, error');
     } else {
       var parsedJSON = res.body;
@@ -21,22 +21,26 @@ var ContestProblem = React.createClass({
   render: function () {
     return (
       <tr className='contestProblem'>
-        <td><a href={'/contests/' + this.props.cid + '/' + this.props.id}>
-          {this.state.title}
-        </a></td>
-        <td>{this.state.author}</td>
+        <td>
+          <a href={'/contests/' + this.props.cid + '/' + this.props.id}>
+            {this.state.title}
+          </a>
+        </td>
+        <td>
+          {this.state.author}
+        </td>
       </tr>
     );
   }
 });
 
 module.exports = React.createClass({
-  //Initial State and mounting
+  // Initial State and mounting
   getInitialState: function () {
-    return {title: '', description: '', id:'', problems: []};
+    return {title: '', description: '', id: '', problems: []};
   },
   onGetContest: function (err, res) {
-    if (err){
+    if (err) {
       console.log('Oh no!, error');
     } else {
       var parsedJSON = res.body;
@@ -63,26 +67,27 @@ module.exports = React.createClass({
           key={item.problem_id}
           id={item.problem_id}
           cid={this.state.id}
-          url={this.props.url}>
-        </ContestProblem>
+          url={this.props.url} />
       );
     }.bind(this));
-    return(
+    return (
       <div className='contestList'>
         <h2>{this.state.title}</h2>
-        <ContestEdit
-          url={this.props.url}
-          id={this.state.id}
-          updateParent={this.update}>
-        </ContestEdit>
+        <ContestEdit url={this.props.url} id={this.state.id} updateParent={this.update} />
         <br />
         <h3>Description:</h3>
-        <p>{this.state.description}</p>
+        <p>
+          {this.state.description}
+        </p>
         <h4>Problems</h4>
         <table>
           <thead>
-            <th><h3>Name</h3></th>
-            <th><h3>Author</h3></th>
+            <th>
+              <h3>Name</h3>
+            </th>
+            <th>
+              <h3>Author</h3>
+            </th>
           </thead>
           <tbody>
             {contestProblems}

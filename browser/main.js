@@ -9,7 +9,6 @@ var ProblemForm = require('./components/problem_form.js');
 var ProblemList = require('./components/problem_list.js');
 var Users = require('./components/users.js');
 var Register = require('./components/user_form.js');
-var submission = require('./components/submission.js')
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 var TestAuth = require('./components/test_auth.js');
@@ -32,18 +31,17 @@ function sendContest (data) {
   utils.postToServer(window.backendAddress, 'contests', data, postContestRes);
 }
 
-function sendProblem(data) {
+function sendProblem (data) {
   utils.postToServer(window.backendAddress, 'problems', data, postProblemRes);
 }
 
-page('/contests/new', function() {
+page('/contests/new', function () {
   ReactDOM.render(
     <ContestForm
       header='Create Contest'
       submit={sendContest}
       buttonText='Add Contest'
-      url={window.backendAddress}
-    />,
+      url={window.backendAddress} />,
     document.getElementById('container')
   );
 });
@@ -57,11 +55,7 @@ page('/contests/:id', function (ctx) {
 
 page('/contests/:cid/:id', function (ctx) {
   ReactDOM.render(
-    <Problem
-      url={window.backendAddress}
-      id={ctx.params.id}
-      cid={ctx.params.cid}
-    />,
+    <Problem url={window.backendAddress} id={ctx.params.id} cid={ctx.params.cid} />,
     document.getElementById('container')
   );
 });
@@ -73,27 +67,23 @@ page('/contests', function () {
   );
 });
 
-page("/users/new", function() {
+page('/users/new', function () {
   ReactDOM.render(
-    <Register url={window.backendAddress}/>,
+    <Register url={window.backendAddress} />,
     document.getElementById('container')
   );
 });
 
-page("/users", function() {
+page('/users', function () {
   ReactDOM.render(
-    <Users url={window.backendAddress}/>,
+    <Users url={window.backendAddress} />,
     document.getElementById('container')
   );
 });
 
 page('/problems/new', function () {
   ReactDOM.render(
-    <ProblemForm
-      header='Create Problem'
-      buttonText='Create'
-      submit={sendProblem} 
-    />,
+    <ProblemForm header='Create Problem' buttonText='Create' submit={sendProblem} />,
     document.getElementById('container')
   );
 });
@@ -114,7 +104,7 @@ page('/problems', function () {
 
 page('/submissions/new/:contest_id/:problem_id', function (ctx) {
   ReactDOM.render(
-    <SubmissionForm url={window.backendAddress}  contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id}  />,
+    <SubmissionForm url={window.backendAddress} contest_id={ctx.params.contest_id} problem_id={ctx.params.problem_id} />,
     document.getElementById('container')
   );
 });
@@ -126,11 +116,9 @@ page('/submissions', function () {
   );
 });
 
-
 ReactDOM.render(
   <TestAuth url={window.backendAddress} />,
   document.getElementById('testAuth')
 );
 
-
-page({ dispatch: true});
+page({dispatch: true});

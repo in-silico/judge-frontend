@@ -1,6 +1,4 @@
 var React = require('react');
-var superagent = require('superagent');
-var utils = require('../utils.js')
 
 module.exports = React.createClass({
   propTypes: {
@@ -8,11 +6,15 @@ module.exports = React.createClass({
     buttonText: React.PropTypes.string.isRequired,
     submit: React.PropTypes.func.isRequired
   },
-  //Initial State, Component mounting
+  // Initial State, Component mounting
   getInitialState: function () {
-    return {title: '', author:'', description: ''}
+    return {
+      title: '',
+      author: '',
+      description: ''
+    };
   },
-  //Handlers
+  // Handlers
   handleTitleChange: function (e) {
     this.setState({title: e.target.value});
   },
@@ -27,7 +29,7 @@ module.exports = React.createClass({
     var title = this.state.title.trim();
     var author = this.state.author.trim();
     var description = this.state.description.trim();
-    //var problemArray = this.state.selProblems;
+    // var problemArray = this.state.selProblems;
     if (!title || !author || !description) return;
     var data = {title: title, author: author, description: description};
     this.props.submit(data);

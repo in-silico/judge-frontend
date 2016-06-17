@@ -9,7 +9,6 @@ module.exports = {
 
     backdrop: {
       position: 'fixed',
-      zIndex: 1040,
       top: 0, bottom: 0, left: 0, right: 0,
       zIndex: 'auto',
       backgroundColor: '#000',
@@ -26,4 +25,4 @@ module.exports = {
       padding: 20
     }
   }
-}
+};
