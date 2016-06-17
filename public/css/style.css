@@ -296,8 +296,6 @@ td {
 .testCaseForm button,
 .dropdown select {
   background-color: white;
-  color: #008CBA;
-  border: 2px solid #008CBA;
   border-radius: 8px;
   padding: 10px 15px;
   text-align: center;
@@ -311,13 +309,34 @@ td {
   cursor: pointer;
 }
 
+/*Color - Button*/
+
+/*Green*/
+.userForm form button,
+.problemForm form button,
+.addProblemsForm form button,
+.contestForm form button {
+  color: #2ECC71;
+  border: 2px solid #2ECC71;
+}
+
 .userForm form button:hover,
 .contestForm form button:hover,
 .addProblemsForm form button:hover,
-.problemForm form button:hover,
-.contestEdit button:hover,
-.problemEdit button:hover,
-.testCaseForm button:hover {
-  background-color: #008CBA;
+.problemForm form button:hover {
+  background-color: #2ECC71;
   color: white;
 }
+
+/*Yellow*/
+.contestEdit button {
+  color: #F89406;
+  border: 2px solid #F89406;
+}
+
+.contestEdit button:hover {
+  background-color: #F89406;
+  color: white;
+}
+
+/*Red - D91E18*/
