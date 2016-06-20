@@ -1,17 +1,17 @@
 var React = require('react');
 var utils = require('../utils');
 
-
 module.exports = React.createClass({
   getInitialState: function () {
     return {user: null};
   },
 
   onGetUser: function (err, res) {
-    if(err)
+    if (err) {
       console.log('Oh no! error: ' + err);
-    else
+    } else {
       this.setState({user: res.body});
+    }
   },
 
   componentDidMount: function () {
@@ -23,7 +23,7 @@ module.exports = React.createClass({
     if (this.state.user) {
       auth = <p>{'Hello ' + this.state.user.login + ' !'}</p>;
     } else {
-      auth =  <a href="/login"> login </a>;
+      auth = <a href='/login'> login </a>;
     }
     return (
       <div className='Auth'>

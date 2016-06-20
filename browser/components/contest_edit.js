@@ -14,11 +14,12 @@ module.exports = React.createClass({
     return {showModal: false};
   },
   onEditContest: function (err, res) {
-    if (err)
-      return alert('Oh No, error!');
+    if (err) {
+      return; // alert('Oh No, error!');
+    }
     this.props.updateParent();
     this.close();
-    alert('Contest Updated');
+    // alert('Contest Updated');
   },
   handleSubmit: function (data) {
     utils.putToServer(
@@ -27,7 +28,7 @@ module.exports = React.createClass({
       this.onEditContest
     );
   },
-  render: function() {
+  render: function () {
     return (
       <div className='contestEdit' onSubmit={this.handleSubmit}>
         <button onClick={this.open}>
@@ -37,26 +38,24 @@ module.exports = React.createClass({
           style={style.modal.modal}
           backdropStyle={style.modal.backdrop}
           show={this.state.showModal}
-          onHide={this.close}
-        >
-          <div style={style.modal.dialog} >
+          onHide={this.close}>
+          <div style={style.modal.dialog}>
             <ContestForm
               url={this.props.url}
               header='Edit Contest'
               buttonText='Edit'
-              submit={this.handleSubmit}
-            />
+              submit={this.handleSubmit} />
           </div>
         </Modal>
       </div>
     );
   },
 
-  close(){
+  close () {
     this.setState({ showModal: false });
   },
 
-  open(){
+  open () {
     this.setState({ showModal: true });
   }
 });

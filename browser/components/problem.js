@@ -1,9 +1,10 @@
 var React = require('react');
-var katex = require('katex');
-var marked = require('marked');
 var utils = require('../utils');
 var SubmissionForm = require('./submission_form.js');
 var ProblemEdit = require('./problem_edit.js');
+
+require('katex');
+require('marked');
 
 var TestCaseForm = React.createClass({
   getInitialState: function () {
@@ -15,29 +16,32 @@ var TestCaseForm = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
     var file = this.state.testCases;
-    var data = new FormData();
+    var data = new FormData(); // eslint-disable-line
     for (var key in file) {
-      if (file.hasOwnProperty(key) && file[key] instanceof File) {
+      if (file.hasOwnProperty(key) &&
+          (file[key] instanceof File)) { // eslint-disable-line
         data.append(key, file[key]);
       }
     }
 
-    if (!data)
+    if (!data) {
       return;
+    }
 
     utils.postToServer(this.props.url,
         'problems/' + this.props.id + '/tc',
         data,
         this.onDataSubmit);
 
-    document.querySelector("#tcForm").reset();
+    document.querySelector('#tcForm').reset();
   },
 
   onDataSubmit: function (err, res) {
-    if (err)
+    if (err) {
       console.log('Oh no! error');
-    else
+    } else {
       console.log(res.body);
+    }
   },
 
   render: function () {
@@ -49,10 +53,10 @@ var TestCaseForm = React.createClass({
             <input
               type='file'
               placeholder='File'
-              id = 'testCases'
+              id='testCases'
               onChange={this.handleFileChange} multiple>
             </input>
-            <button type='submit' className='button button-color' value = 'Add Test Case'>Add Test Case</button>
+            <button type='submit' className='button button-color' value='Add Test Case'>Add Test Case</button>
           </form>
         </div>
       </div>
@@ -64,16 +68,16 @@ module.exports = React.createClass({
   getInitialState: function () {
     return ({
       title: '',
-      author:'',
+      author: '',
       description: '',
       memLimit: 0,
       timeLimit: 0
     });
   },
   onGetProblem: function (err, res) {
-    if(err)
+    if (err) {
       console.log('Oh no! error');
-    else{
+    } else {
       var parsedJSON = res.body;
       this.setState({title: parsedJSON.title, author: parsedJSON.author, description: parsedJSON.description});
     }
@@ -85,7 +89,7 @@ module.exports = React.createClass({
     } else {
       var parsedJSON = res.body;
       var cp = parsedJSON.problems.find(function (item) {
-        return item.problem_id == this.props.id;
+        return item.problem_id === this.props.id;
       }.bind(this));
       this.setState({memLimit: cp.memory_limit, timeLimit: cp.time_limit});
     }
@@ -94,9 +98,10 @@ module.exports = React.createClass({
   componentDidMount: function () {
     utils.getResourceFromServer(this.props.url, 'problems/' + this.props.id,
       this.onGetProblem);
-    if (this.props.cid)
+    if (this.props.cid) {
       utils.getResourceFromServer(this.props.url, 'contests/' + this.props.cid,
         this.onGetContest);
+    }
   },
   update: function () {
     utils.getResourceFromServer(this.props.url, 'problems/' + this.props.id,
@@ -106,7 +111,7 @@ module.exports = React.createClass({
     var limits;
     var submission;
     var edition;
-    if (this.props.cid){
+    if (this.props.cid) {
       limits = (
         <ul>
           <li>{'Memory Limit: ' + this.state.memLimit}</li>
@@ -119,8 +124,7 @@ module.exports = React.createClass({
           <SubmissionForm
             contest_id={this.props.cid}
             problem_id={this.props.id}
-            url={this.props.url}>
-          </SubmissionForm>
+            url={this.props.url} />
         </div>
       );
       edition = null;
@@ -134,7 +138,7 @@ module.exports = React.createClass({
       />;
     }
     return (
-      <div className="Problem">
+      <div className='Problem'>
         <h1> {this.state.title} </h1>
         <h3>Author: {this.state.author} </h3>
         {edition}
@@ -151,9 +155,9 @@ module.exports = React.createClass({
         <div>
           <TestCaseForm
             url={this.props.url}
-            id={this.props.id}>
-          </TestCaseForm>
-        </div><br/>
+            id={this.props.id} />
+        </div>
+        <br />
         {submission}
       </div>
     );
