@@ -40,15 +40,14 @@ module.exports = React.createClass({
     utils.postToServer(this.props.url, 'users', {
       username: username,
       name: name,
-      email: email
-    // password: password,
-    // cpassword: cpassword
+      email: email,
+      password: password
     }, this.onUserSubmit);
   },
 
   onUserSubmit: function (err, res) {
     if (err || !res.ok) {
-      console.log('Oh no! error');
+      console.log('Oh no! error', err, res);
     } else {
       window.location.pathname = '/users';
       console.log('yay got ' + JSON.stringify(res.body));

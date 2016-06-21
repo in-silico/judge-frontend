@@ -12,6 +12,8 @@ var Register = require('./components/user_form.js');
 var SubmissionForm = require('./components/submission_form.js');
 var SubmissionList = require('./components/submission_list.js');
 var TestAuth = require('./components/test_auth.js');
+var Login = require('./components/login.js');
+var UserStatus = require('./components/user-status');
 var utils = require('./utils.js');
 
 var config = require('../config/development.js');
@@ -116,9 +118,21 @@ page('/submissions', function () {
   );
 });
 
+page('/login', function () {
+  ReactDOM.render(
+    <Login url={window.backendAddress} />,
+    document.getElementById('container')
+  );
+});
+
 ReactDOM.render(
   <TestAuth url={window.backendAddress} />,
   document.getElementById('testAuth')
+);
+
+ReactDOM.render(
+  <UserStatus />,
+  document.getElementById('user-status')
 );
 
 page({dispatch: true});
