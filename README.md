@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/in-silico/judge-frontend.svg?branch=master)](https://travis-ci.org/in-silico/judge-frontend)
 [![dependencies Status](https://david-dm.org/in-silico/judge-frontend/status.svg)](https://david-dm.org/in-silico/judge-frontend)
+[![npm version](https://badge.fury.io/js/npm.svg)](https://badge.fury.io/js/npm)
 
 Frontend Service for UTPJudge project, it aims to deliver a responsive user interface for programming contests, it will use the [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) provided by the [judge-backend](https://github.com/in-silico/judge-backend) to get the judging done.
 
